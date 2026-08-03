@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FiMail, FiLock, FiUser, FiEye, FiEyeOff, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
 import Logo from '@/components/Logo';
 
@@ -14,6 +15,8 @@ export default function AuthPage() {
     email: '',
     password: '',
   });
+
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,6 +32,8 @@ export default function AuthPage() {
         password: formData.password,
       });
     }
+
+    router.push('/dashboard');
   };
 
   return (

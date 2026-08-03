@@ -83,11 +83,11 @@ export default function Navbar() {
 
       {/* Desktop Actions */}
       <div className="hidden md:flex items-center gap-5">
-        <Link href="/#" className="text-sm font-semibold text-sky-500 hover:text-sky-600">
+        <Link href="/auth" className="text-sm font-semibold text-sky-500 hover:text-sky-600">
           Sign in
         </Link>
         <Link
-          href="/#"
+          href="/auth"
           className="bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-xs transition inline-flex items-center"
         >
           Create my resume
@@ -151,14 +151,14 @@ export default function Navbar() {
           {/* Mobile Buttons */}
           <div className="flex flex-col gap-3 pt-2">
             <Link
-              href="/#"
+              href="/auth"
               onClick={() => setMobileMenuOpen(false)}
               className="text-center text-sm font-semibold text-sky-500 py-2.5 rounded-xl border border-sky-100 hover:bg-sky-50 transition"
             >
               Sign in
             </Link>
             <Link
-              href="/#"
+              href="/auth"
               onClick={() => setMobileMenuOpen(false)}
               className="text-center bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold py-3 rounded-xl shadow-xs transition"
             >
