@@ -9,6 +9,7 @@ import DashboardTabs from '@/components/dashboard/DashboardTabs';
 import DashboardDisplay from '@/components/dashboard/DashboardDisplay';
 import type { DashboardTab, PipelineStep } from '@/components/dashboard/types';
 import { signOutAction } from '@/actions/auth';
+import { uploadResumeAction, parsePDFAction } from '@/actions/dashboard';
 
 export default function DashboardPage() {
   const [currentStep, setCurrentStep] = useState<PipelineStep>('input');
@@ -16,6 +17,7 @@ export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState<DashboardTab>('resume');
   const [file, setFile] = useState<File | null>(null);
   const [jobDescription, setJobDescription] = useState('');
+  const [isPending, startTransition] = useTransition();
 
   const handleStartSprint = () => {
     if (!jobDescription || !file) return;
@@ -48,6 +50,34 @@ export default function DashboardPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  useEffect(() => {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('resume', file);
+
+    startTransition(async () => {
+      const formData = new FormData();
+      formData.append('resume', file);
+
+      const [uploadResult, parseResult] = await Promise.all([
+        uploadResumeAction(formData),
+        parsePDFAction(formData),
+      ]);
+
+      if (uploadResult?.error || !uploadResult?.url) {
+        console.error('Supabase Upload Failed:', uploadResult?.error);
+      }
+      console.log('Successfully uploaded: ', uploadResult.url);
+
+      if (parseResult?.error) {
+        console.error('PDF Parse Failed:', parseResult.error);
+      } else {
+        console.log('Parsed PDF Text:', parseResult.text);
+      }
+    });
+  }, [file]);
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
