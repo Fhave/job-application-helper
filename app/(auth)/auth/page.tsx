@@ -1,14 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useTransition } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { FiMail, FiLock, FiUser, FiEye, FiEyeOff, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
+import {
+  FiMail,
+  FiLock,
+  FiUser,
+  FiEye,
+  FiEyeOff,
+  FiArrowRight,
+  FiArrowLeft,
+  FiAlertCircle,
+} from 'react-icons/fi';
 import Logo from '@/components/Logo';
+import { loginAction, signupAction } from '@/actions/auth';
 
 export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -16,24 +27,35 @@ export default function AuthPage() {
     password: '',
   });
 
-  const router = useRouter();
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isSignUp) {
-      console.log('Signing up to JobSprint AI with:', formData);
-    } else {
-      console.log('Logging in to JobSprint AI with:', {
-        email: formData.email,
-        password: formData.password,
-      });
+    setErrorMessage(null);
+
+    const data = new FormData();
+    data.append('email', formData.email);
+    data.append('password', formData.password);
+    if (isSignUp && formData.name) {
+      data.append('name', formData.name);
     }
 
-    router.push('/dashboard');
+    const action = isSignUp ? signupAction : loginAction;
+
+    startTransition(async () => {
+      const result = await action(data);
+      if (result?.error) {
+        setErrorMessage(result.error);
+      }
+    });
+  };
+
+  const handleToggleMode = (signUpMode: boolean) => {
+    setIsSignUp(signUpMode);
+    setErrorMessage(null);
+    setFormData({ name: '', email: '', password: '' });
   };
 
   return (
@@ -74,6 +96,14 @@ export default function AuthPage() {
               : 'Sign in to access your saved job applications and pipelines'}
           </p>
         </div>
+
+        {/* Inline Error Display */}
+        {errorMessage && (
+          <div className="mb-5 p-3.5 bg-red-50 border border-red-200 text-red-600 text-xs rounded-2xl flex items-start gap-2.5">
+            <FiAlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+            <span className="leading-relaxed font-medium">{errorMessage}</span>
+          </div>
+        )}
 
         {/* Auth Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -150,9 +180,16 @@ export default function AuthPage() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 group mt-2 shadow-xs"
+            disabled={isPending}
+            className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 group mt-2 shadow-xs"
           >
-            {isSignUp ? 'Start Free Sprint' : 'Sign In'}
+            <span>
+              {isPending
+                ? 'Authenticating...'
+                : isSignUp
+                ? 'Start Free Sprint'
+                : 'Sign In'}
+            </span>
             <FiArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </form>
@@ -164,7 +201,7 @@ export default function AuthPage() {
               Already have an account?{' '}
               <button
                 type="button"
-                onClick={() => setIsSignUp(false)}
+                onClick={() => handleToggleMode(false)}
                 className="text-sky-600 font-semibold hover:underline"
               >
                 Log in
@@ -175,7 +212,7 @@ export default function AuthPage() {
               Don&apos;t have an account?{' '}
               <button
                 type="button"
-                onClick={() => setIsSignUp(true)}
+                onClick={() => handleToggleMode(true)}
                 className="text-sky-600 font-semibold hover:underline"
               >
                 Sign up
