@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useTransition } from 'react';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import PipelineStepper from '@/components/dashboard/PipelineStepper';
 import UploadPanel from '@/components/dashboard/UploadPanel';
@@ -8,6 +8,7 @@ import AuditSidebar from '@/components/dashboard/AuditSidebar';
 import DashboardTabs from '@/components/dashboard/DashboardTabs';
 import DashboardDisplay from '@/components/dashboard/DashboardDisplay';
 import type { DashboardTab, PipelineStep } from '@/components/dashboard/types';
+import { signOutAction } from '@/actions/auth';
 
 export default function DashboardPage() {
   const [currentStep, setCurrentStep] = useState<PipelineStep>('input');
@@ -50,7 +51,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
-      <DashboardHeader currentStep={currentStep} onReset={handleReset} />
+      <DashboardHeader currentStep={currentStep} onReset={handleReset} onSignOut={signOutAction} />
 
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-5 flex flex-col gap-6">

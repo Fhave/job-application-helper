@@ -8,9 +8,10 @@ import type { PipelineStep } from './types';
 type DashboardHeaderProps = {
   currentStep: PipelineStep;
   onReset: () => void;
+  onSignOut: () => void;
 };
 
-export default function DashboardHeader({ currentStep, onReset }: DashboardHeaderProps) {
+export default function DashboardHeader({ currentStep, onReset, onSignOut }: DashboardHeaderProps) {
   return (
     <header className="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-30">
       <div className="flex items-center gap-3">
@@ -37,12 +38,12 @@ export default function DashboardHeader({ currentStep, onReset }: DashboardHeade
           </button>
         )}
 
-        <Link
-          href="/"
+        <button
+          onClick={onSignOut}
           className="text-xs font-semibold text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 transition"
         >
           Exit Workspace
-        </Link>
+        </button>
       </div>
     </header>
   );
