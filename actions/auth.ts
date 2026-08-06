@@ -84,6 +84,7 @@ export async function sendMagicLinkAction(email: string) {
 
     return { success: true };
   } catch (err) {
-    return { error: err.message || 'Failed to send email.' };
+    const errorMessage = err instanceof Error ? err.message : 'Failed to send email.';
+    return { error: errorMessage };
   }
 }
