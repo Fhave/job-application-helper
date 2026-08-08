@@ -1,3 +1,4 @@
+import { requireUser } from '@/lib/auth/requireUser';
 import { streamObject } from 'ai';
 import { google } from '@ai-sdk/google';
 import { CoverLetterSchema } from '@/lib/types';
@@ -5,6 +6,12 @@ import { CoverLetterSchema } from '@/lib/types';
 export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
+   const user = await requireUser();
+
+  if (!user) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+
   const { jobDescription, cvData, domainRelevance } = await req.json();
 
   if (!jobDescription || jobDescription.trim().length < 20) {
