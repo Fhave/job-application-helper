@@ -19,7 +19,9 @@ export async function POST(req: Request) {
     const buffer = await generateApplicationPdf(cvData, coverLetterData ?? null);
     const safeName = (cvData.fullName || 'resume').toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
-    return new Response(buffer, {
+    const body = new Uint8Array(buffer);
+
+    return new Response(body, {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="${safeName}-application.pdf"`,
