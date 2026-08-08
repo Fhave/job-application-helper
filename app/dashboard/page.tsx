@@ -2,7 +2,6 @@
 
 import React, { useState, useTransition } from 'react';
 import { experimental_useObject as useObject } from '@ai-sdk/react';
-import { z } from 'zod';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import PipelineStepper from '@/components/dashboard/PipelineStepper';
 import UploadPanel from '@/components/dashboard/UploadPanel';
@@ -16,15 +15,16 @@ import { signOutAction } from '@/actions/auth';
 import {
   parsePDFAction
 } from '@/actions/dashboard';
+import { downloadServerPDF } from '@/lib/generateApplicationPdf';
 import { checkLooksLikeResume, checkLooksLikeJobDescription } from '@/lib/validation';
 
 export default function DashboardPage() {
   const [currentStep, setCurrentStep] = useState<PipelineStep>('input');
-  const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<DashboardTab>('resume');
   const [file, setFile] = useState<File | null>(null);
   const [resumeText, setResumeText] = useState<string>('');
   const [jobDescription, setJobDescription] = useState('');
+  const [isExporting, setIsExporting] = useState(false);
   const [isPending, startTransition] = useTransition();
   const [inputError, setInputError] = useState<string | null>(null);
 
@@ -117,6 +117,38 @@ export default function DashboardPage() {
     coverLetter.stop();
   };
 
+const handleExport = async () => {
+  if (!auditAndCV.object?.generatedCV) return;
+  setIsExporting(true);
+
+  try {
+    const response = await fetch('/api/export', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        cvData: auditAndCV.object.generatedCV,
+        coverLetterData: coverLetter.object ?? null,
+      }),
+    });
+
+    if (!response.ok) throw new Error(await response.text());
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'application.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error('Export failed:', err);
+  } finally {
+    setIsExporting(false);
+  }
+};
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
       <DashboardHeader currentStep={currentStep} onReset={handleReset} onSignOut={signOutAction} />
@@ -158,6 +190,8 @@ export default function DashboardPage() {
               activeTab={activeTab}
               currentStep={currentStep}
               onChangeTab={setActiveTab}
+              onExport={handleExport}
+              isExporting={isExporting}
             />
           )}
 

@@ -347,11 +347,6 @@ export default function DashboardDisplay({
   if (activeTab === 'resume') {
     return cvData ? (
       <div className="h-full">
-        {currentStep !== 'ready' && (
-          <div className="mb-4 rounded-2xl border border-sky-100 bg-sky-50 p-3 text-[11px] text-sky-700">
-            Streaming tailored resume preview...
-          </div>
-        )}
         <ResumeDisplay data={cvData} />
       </div>
     ) : (
@@ -361,12 +356,7 @@ export default function DashboardDisplay({
 
   return coverLetterData ? (
     <div className="h-full">
-      {currentStep !== 'ready' && (
-        <div className="mb-4 rounded-2xl border border-slate-100 bg-slate-50 p-3 text-[11px] text-slate-600">
-          Streaming cover letter preview...
-        </div>
-      )}
-      <CoverLetterDisplay data={coverLetterData} />
+        <CoverLetterDisplay data={coverLetterData} />
     </div>
   ) : (
     loadingState(currentStep)
