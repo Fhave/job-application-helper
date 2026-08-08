@@ -15,7 +15,6 @@ import { signOutAction } from '@/actions/auth';
 import {
   parsePDFAction
 } from '@/actions/dashboard';
-import { downloadServerPDF } from '@/lib/generateApplicationPdf';
 import { checkLooksLikeResume, checkLooksLikeJobDescription } from '@/lib/validation';
 
 export default function DashboardPage() {
