@@ -1,22 +1,18 @@
 'use client';
 
 import { FiCopy, FiCheck, FiDownload } from 'react-icons/fi';
-import type { DashboardTab, PipelineStep } from './types';
+import type { DashboardTab, PipelineStep } from '@/lib/types';
 
 type DashboardTabsProps = {
   activeTab: DashboardTab;
   currentStep: PipelineStep;
-  copied: boolean;
   onChangeTab: (tab: DashboardTab) => void;
-  onCopy: () => void;
 };
 
 export default function DashboardTabs({
   activeTab,
   currentStep,
-  copied,
   onChangeTab,
-  onCopy,
 }: DashboardTabsProps) {
   return (
     <div className="flex items-center justify-between bg-white border border-slate-200 rounded-xl p-1.5 shadow-xs">
@@ -35,7 +31,7 @@ export default function DashboardTabs({
         <button
           type="button"
           onClick={() => onChangeTab('cover-letter')}
-          disabled={['parsing', 'analyzing', 'ready'].includes(currentStep)}
+          disabled={currentStep === 'parsing'}
           className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
             activeTab === 'cover-letter'
               ? 'bg-sky-50 text-sky-700 border border-sky-200'
@@ -47,14 +43,6 @@ export default function DashboardTabs({
       </div>
 
       <div className="flex items-center gap-2 pr-2">
-        <button
-          type="button"
-          onClick={onCopy}
-          className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition"
-          title="Copy to Clipboard"
-        >
-          {copied ? <FiCheck className="w-4 h-4 text-emerald-600" /> : <FiCopy className="w-4 h-4" />}
-        </button>
         <button
           type="button"
           className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-xs transition"

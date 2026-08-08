@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Logo from '@/components/Logo';
 import { FiRotateCw } from 'react-icons/fi';
-import type { PipelineStep } from './types';
+import type { PipelineStep } from '@/lib/types';
 
 type DashboardHeaderProps = {
   currentStep: PipelineStep;
