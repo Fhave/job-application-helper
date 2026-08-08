@@ -1,7 +1,7 @@
 'use client';
 
 import { FiCheckCircle } from 'react-icons/fi';
-import type { PipelineStep } from './types';
+import type { PipelineStep } from '@/lib/types';
 
 type PipelineStepperProps = {
   currentStep: PipelineStep;
@@ -35,12 +35,12 @@ export default function PipelineStepper({ currentStep }: PipelineStepperProps) {
           <div
             className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${['parsing', 'analyzing'].includes(currentStep)
                 ? 'bg-sky-500 text-white animate-pulse'
-                : ['ready', 'lettering', 'done'].includes(currentStep)
+                : ['ready', 'lettering', 'ready'].includes(currentStep)
                   ? 'bg-emerald-500 text-white'
                   : 'bg-slate-100 text-slate-400'
               }`}
           >
-            {['ready', 'lettering', 'done'].includes(currentStep) ? (
+            {['ready', 'lettering', 'ready'].includes(currentStep) ? (
               <FiCheckCircle className="w-4 h-4" />
             ) : (
               '2'
@@ -56,12 +56,12 @@ export default function PipelineStepper({ currentStep }: PipelineStepperProps) {
           <div
             className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${currentStep === 'lettering'
                 ? 'bg-sky-500 text-white animate-pulse'
-                : currentStep === 'done'
+                : currentStep === 'ready'
                   ? 'bg-emerald-500 text-white'
                   : 'bg-slate-100 text-slate-400'
               }`}
           >
-            {currentStep === 'done' ? <FiCheckCircle className="w-4 h-4" /> : '3'}
+            {currentStep === 'ready' ? <FiCheckCircle className="w-4 h-4" /> : '3'}
           </div>
           <div className="flex-1">
             <p className="text-xs font-bold text-slate-800">Generate Cover Letter</p>
