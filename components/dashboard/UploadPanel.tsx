@@ -37,7 +37,9 @@ export default function UploadPanel({
           </div>
         ) : (
           <>
-            <p className="text-xs font-semibold text-slate-700">Click to upload or drag & drop PDF</p>
+            <p className="text-xs font-semibold text-slate-700">
+              Click to upload or drag & drop PDF
+            </p>
             <p className="text-[11px] text-slate-400 mt-1">Maximum file size: 5MB</p>
           </>
         )}

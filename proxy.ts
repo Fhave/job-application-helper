@@ -32,7 +32,8 @@ export async function proxy(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const isDashboardRoute =
-    request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/app');
+    request.nextUrl.pathname.startsWith('/dashboard') ||
+    request.nextUrl.pathname.startsWith('/app');
   const isAuthRoute = request.nextUrl.pathname.startsWith('/auth');
 
   if (!user && isDashboardRoute) {

@@ -4,7 +4,7 @@ import { generateApplicationPdf } from '@/lib/export';
 export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
-   const user = await requireUser();
+  const user = await requireUser();
 
   if (!user) {
     return new Response('Unauthorized', { status: 401 });

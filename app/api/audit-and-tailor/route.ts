@@ -19,9 +19,12 @@ export async function POST(req: Request) {
   }
 
   if (resumeText.trim().length < 50) {
-    return new Response('The resume text looks too short to analyze — check that the PDF parsed correctly.', {
-      status: 400,
-    });
+    return new Response(
+      'The resume text looks too short to analyze — check that the PDF parsed correctly.',
+      {
+        status: 400,
+      }
+    );
   }
 
   const result = streamObject({

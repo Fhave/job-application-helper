@@ -21,7 +21,6 @@ export default function ToolsSection() {
 
       {/* Feature Cards Showcase */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-
         <div className="bg-emerald-50/70 border border-emerald-100 rounded-3xl p-8 flex flex-col justify-between space-y-8">
           <div className="space-y-4">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xs">

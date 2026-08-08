@@ -51,7 +51,6 @@ export default function AdviceSection() {
           </div>
 
           <div className="absolute right-6 bottom-4 w-44 h-44 pointer-events-none flex items-center justify-center">
-
             <div className="absolute inset-0 bg-[#e7d8c9]/60 rounded-full blur-xl transform scale-90" />
 
             <div className="relative bg-white border border-slate-200 rounded-lg p-3 shadow-md w-28 h-36 flex flex-col justify-between rotate-[-6deg]">
@@ -98,7 +97,6 @@ export default function AdviceSection() {
 
           <div className="absolute right-8 bottom-2 w-48 h-44 pointer-events-none flex items-center justify-center">
             <div className="relative w-36 h-28 bg-[#d95338] rounded-xl shadow-lg border-t-4 border-[#b8432b] flex flex-col items-center pt-2">
-
               <div className="absolute -top-4 w-12 h-4 border-2 border-slate-700 rounded-t-md" />
 
               <div className="w-full flex justify-between px-6 absolute top-0 bottom-0 pointer-events-none">

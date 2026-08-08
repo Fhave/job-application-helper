@@ -1,4 +1,4 @@
-import type { InputLikelinessResult } from "@/lib/types"
+import type { InputLikelinessResult } from '@/lib/types';
 
 const RESUME_SIGNALS: RegExp[] = [
   /\b(experience|employment history|work history)\b/i,
@@ -28,7 +28,8 @@ export function checkLooksLikeResume(text: string): InputLikelinessResult {
   const s = score(text, RESUME_SIGNALS);
   const reasons: string[] = [];
   if (text.trim().length < 100) reasons.push('The text is very short for a resume.');
-  if (s === 0) reasons.push("It doesn't contain typical resume sections — experience, education, or skills.");
+  if (s === 0)
+    reasons.push("It doesn't contain typical resume sections — experience, education, or skills.");
 
   return {
     isLikely: s >= 2 && text.trim().length >= 100,
@@ -41,7 +42,10 @@ export function checkLooksLikeJobDescription(text: string): InputLikelinessResul
   const s = score(text, JD_SIGNALS);
   const reasons: string[] = [];
   if (text.trim().length < 100) reasons.push('The text is very short for a job description.');
-  if (s === 0) reasons.push("It doesn't contain typical job-posting language — responsibilities, requirements, or qualifications.");
+  if (s === 0)
+    reasons.push(
+      "It doesn't contain typical job-posting language — responsibilities, requirements, or qualifications."
+    );
 
   return {
     isLikely: s >= 1 && text.trim().length >= 100,
