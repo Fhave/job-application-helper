@@ -31,7 +31,8 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isDashboardRoute = request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/app');
+  const isDashboardRoute =
+    request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/app');
   const isAuthRoute = request.nextUrl.pathname.startsWith('/auth');
 
   if (!user && isDashboardRoute) {
@@ -51,6 +52,6 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|api|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };
