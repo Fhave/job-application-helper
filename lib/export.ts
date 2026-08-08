@@ -13,13 +13,20 @@ function streamToBuffer(doc: PDFKit.PDFDocument): Promise<Buffer> {
 
 function sectionHeader(doc: PDFKit.PDFDocument, title: string) {
   doc.moveDown(0.8);
-  doc.fontSize(10).font('Helvetica-Bold').fillColor('#475072').text(title.toUpperCase(), { characterSpacing: 0.5 });
+  doc
+    .fontSize(10)
+    .font('Helvetica-Bold')
+    .fillColor('#475072')
+    .text(title.toUpperCase(), { characterSpacing: 0.5 });
   doc.moveDown(0.3);
   doc.fillColor('#000000');
 }
 
 function buildResumePages(doc: PDFKit.PDFDocument, cv: CVData) {
-  doc.fontSize(20).font('Helvetica-Bold').text(cv.fullName || 'Candidate');
+  doc
+    .fontSize(20)
+    .font('Helvetica-Bold')
+    .text(cv.fullName || 'Candidate');
 
   const contactItems = [
     cv.contactInfo?.email,
@@ -48,7 +55,10 @@ function buildResumePages(doc: PDFKit.PDFDocument, cv: CVData) {
     sectionHeader(doc, 'Work Experience');
     cv.experience.forEach((exp, i) => {
       if (i > 0) doc.moveDown(0.6);
-      doc.fontSize(10.5).font('Helvetica-Bold').text(`${exp.role} — ${exp.company}`, { continued: false });
+      doc
+        .fontSize(10.5)
+        .font('Helvetica-Bold')
+        .text(`${exp.role} — ${exp.company}`, { continued: false });
       doc
         .fontSize(9)
         .font('Helvetica')
@@ -68,7 +78,12 @@ function buildResumePages(doc: PDFKit.PDFDocument, cv: CVData) {
   if (cv.education?.length > 0) {
     sectionHeader(doc, 'Education');
     cv.education.forEach((edu) => {
-      doc.fontSize(10).font('Helvetica-Bold').text(edu.degree, { continued: true }).font('Helvetica').text(`  —  ${edu.institution}`);
+      doc
+        .fontSize(10)
+        .font('Helvetica-Bold')
+        .text(edu.degree, { continued: true })
+        .font('Helvetica')
+        .text(`  —  ${edu.institution}`);
       doc
         .fontSize(9)
         .fillColor('#5B6478')
@@ -96,7 +111,11 @@ function buildResumePages(doc: PDFKit.PDFDocument, cv: CVData) {
 function buildCoverLetterPage(doc: PDFKit.PDFDocument, letter: CoverLetterData) {
   doc.addPage();
 
-  const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const today = new Date().toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
   doc.fontSize(9).font('Helvetica').fillColor('#5B6478').text(today);
   doc.text(
     `Re: ${letter.recipient.roleTitle}${letter.recipient.companyName ? ` at ${letter.recipient.companyName}` : ''}`
@@ -107,19 +126,25 @@ function buildCoverLetterPage(doc: PDFKit.PDFDocument, letter: CoverLetterData) 
   doc.moveDown(0.8);
 
   doc.font('Helvetica');
-  [letter.paragraphs.opening, letter.paragraphs.bodyParagraph1, letter.paragraphs.bodyParagraph2, letter.paragraphs.closing].forEach(
-    (para) => {
-      doc.text(para, { lineGap: 3 });
-      doc.moveDown(0.6);
-    }
-  );
+  [
+    letter.paragraphs.opening,
+    letter.paragraphs.bodyParagraph1,
+    letter.paragraphs.bodyParagraph2,
+    letter.paragraphs.closing,
+  ].forEach((para) => {
+    doc.text(para, { lineGap: 3 });
+    doc.moveDown(0.6);
+  });
 
   doc.moveDown(0.6);
   doc.text(letter.signOff);
   doc.font('Helvetica-Bold').text(letter.candidateName);
 }
 
-export async function generateApplicationPdf(cv: CVData, letter: CoverLetterData | null): Promise<Buffer> {
+export async function generateApplicationPdf(
+  cv: CVData,
+  letter: CoverLetterData | null
+): Promise<Buffer> {
   const doc = new PDFDocument({ size: 'A4', margin: 50, bufferPages: true });
   const bufferPromise = streamToBuffer(doc);
 

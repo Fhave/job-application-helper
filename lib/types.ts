@@ -84,7 +84,6 @@ export const CoverLetterSchema = z.object({
 });
 export type CoverLetterData = z.infer<typeof CoverLetterSchema>;
 
-
 export interface DomainRelevance {
   verdict: 'strong' | 'partial' | 'mismatch';
   score: number;

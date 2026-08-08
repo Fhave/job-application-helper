@@ -20,8 +20,9 @@ export default function PipelineStepper({ currentStep }: PipelineStepperProps) {
       <div className="space-y-3">
         <div className="flex items-center gap-3">
           <div
-            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${currentStep === 'input' ? 'bg-sky-500 text-white' : 'bg-emerald-500 text-white'
-              }`}
+            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${
+              currentStep === 'input' ? 'bg-sky-500 text-white' : 'bg-emerald-500 text-white'
+            }`}
           >
             {currentStep === 'input' ? '1' : <FiCheckCircle className="w-4 h-4" />}
           </div>
@@ -33,12 +34,13 @@ export default function PipelineStepper({ currentStep }: PipelineStepperProps) {
 
         <div className="flex items-center gap-3">
           <div
-            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${['parsing', 'analyzing'].includes(currentStep)
+            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${
+              ['parsing', 'analyzing'].includes(currentStep)
                 ? 'bg-sky-500 text-white animate-pulse'
                 : ['ready', 'lettering', 'ready'].includes(currentStep)
                   ? 'bg-emerald-500 text-white'
                   : 'bg-slate-100 text-slate-400'
-              }`}
+            }`}
           >
             {['ready', 'lettering', 'ready'].includes(currentStep) ? (
               <FiCheckCircle className="w-4 h-4" />
@@ -54,12 +56,13 @@ export default function PipelineStepper({ currentStep }: PipelineStepperProps) {
 
         <div className="flex items-center gap-3">
           <div
-            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${currentStep === 'lettering'
+            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${
+              currentStep === 'lettering'
                 ? 'bg-sky-500 text-white animate-pulse'
                 : currentStep === 'ready'
                   ? 'bg-emerald-500 text-white'
                   : 'bg-slate-100 text-slate-400'
-              }`}
+            }`}
           >
             {currentStep === 'ready' ? <FiCheckCircle className="w-4 h-4" /> : '3'}
           </div>

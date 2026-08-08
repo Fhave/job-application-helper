@@ -12,9 +12,7 @@ import DashboardDisplay from '@/components/dashboard/DashboardDisplay';
 import type { DashboardTab, PipelineStep } from '@/lib/types';
 import { AuditAndCVSchema, CoverLetterSchema } from '@/lib/types';
 import { signOutAction } from '@/actions/auth';
-import {
-  parsePDFAction
-} from '@/actions/dashboard';
+import { parsePDFAction } from '@/actions/dashboard';
 import { checkLooksLikeResume, checkLooksLikeJobDescription } from '@/lib/validation';
 
 export default function DashboardPage() {
@@ -91,9 +89,9 @@ export default function DashboardPage() {
       if (!resumeCheck.isLikely || !jdCheck.isLikely) {
         const problems = [
           !resumeCheck.isLikely &&
-          `The uploaded file doesn't look like a resume. ${resumeCheck.reasons.join(' ')}`,
+            `The uploaded file doesn't look like a resume. ${resumeCheck.reasons.join(' ')}`,
           !jdCheck.isLikely &&
-          `The pasted text doesn't look like a job description. ${jdCheck.reasons.join(' ')}`,
+            `The pasted text doesn't look like a job description. ${jdCheck.reasons.join(' ')}`,
         ].filter(Boolean);
         setInputError(problems.join(' '));
         setCurrentStep('input');
@@ -116,37 +114,37 @@ export default function DashboardPage() {
     coverLetter.stop();
   };
 
-const handleExport = async () => {
-  if (!auditAndCV.object?.generatedCV) return;
-  setIsExporting(true);
+  const handleExport = async () => {
+    if (!auditAndCV.object?.generatedCV) return;
+    setIsExporting(true);
 
-  try {
-    const response = await fetch('/api/export', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        cvData: auditAndCV.object.generatedCV,
-        coverLetterData: coverLetter.object ?? null,
-      }),
-    });
+    try {
+      const response = await fetch('/api/export', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          cvData: auditAndCV.object.generatedCV,
+          coverLetterData: coverLetter.object ?? null,
+        }),
+      });
 
-    if (!response.ok) throw new Error(await response.text());
+      if (!response.ok) throw new Error(await response.text());
 
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'application.pdf';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  } catch (err) {
-    console.error('Export failed:', err);
-  } finally {
-    setIsExporting(false);
-  }
-};
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'application.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Export failed:', err);
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
@@ -171,7 +169,10 @@ const handleExport = async () => {
               onStartSprint={handleStartSprint}
             />
           ) : auditAndCV.object?.audit ? (
-            <AuditSidebar {...auditAndCV.object.audit} domainRelevance={auditAndCV.object.domainRelevance} />
+            <AuditSidebar
+              {...auditAndCV.object.audit}
+              domainRelevance={auditAndCV.object.domainRelevance}
+            />
           ) : (
             <AuditSidebarSkeleton />
           )}

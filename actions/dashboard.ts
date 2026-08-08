@@ -16,20 +16,16 @@ export async function uploadResumeAction(formData: FormData) {
 
   const filePath = `resumes/${Date.now()}-${file.name}`;
 
-  const { data, error } = await supabaseAdmin.storage
-    .from('job-sprint')
-    .upload(filePath, buffer, {
-      contentType: file.type,
-      upsert: true,
-    });
+  const { data, error } = await supabaseAdmin.storage.from('job-sprint').upload(filePath, buffer, {
+    contentType: file.type,
+    upsert: true,
+  });
 
   if (error || !data?.path) {
     return { error: error?.message || 'Upload failed.' };
   }
 
-  const { data: fileData } = supabaseAdmin.storage
-    .from('job-sprint')
-    .getPublicUrl(data.path);
+  const { data: fileData } = supabaseAdmin.storage.from('job-sprint').getPublicUrl(data.path);
 
   return { url: fileData.publicUrl };
 }

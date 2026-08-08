@@ -6,7 +6,7 @@ import { CoverLetterSchema } from '@/lib/types';
 export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
-   const user = await requireUser();
+  const user = await requireUser();
 
   if (!user) {
     return new Response('Unauthorized', { status: 401 });
@@ -30,12 +30,19 @@ export async function POST(req: Request) {
   const formattedExperience =
     cvData.experience?.length > 0
       ? cvData.experience
-          .map((exp: { role?: string; company?: string; period?: string; bulletPoints?: string[] }) => {
-            const bullets = Array.isArray(exp.bulletPoints)
-              ? exp.bulletPoints.map((b: string) => `  - ${b}`).join('\n')
-              : '';
-            return `Role: ${exp.role}\nCompany: ${exp.company} (${exp.period})\nHighlights:\n${bullets}`;
-          })
+          .map(
+            (exp: {
+              role?: string;
+              company?: string;
+              period?: string;
+              bulletPoints?: string[];
+            }) => {
+              const bullets = Array.isArray(exp.bulletPoints)
+                ? exp.bulletPoints.map((b: string) => `  - ${b}`).join('\n')
+                : '';
+              return `Role: ${exp.role}\nCompany: ${exp.company} (${exp.period})\nHighlights:\n${bullets}`;
+            }
+          )
           .join('\n\n')
       : 'No explicit experience provided.';
 

@@ -30,12 +30,14 @@ export interface CVData {
     year: string;
     details: string | null;
   }[];
-  projects?: {
-    title: string;
-    technologies: string[];
-    description: string;
-    link: string | null;
-  }[] | null;
+  projects?:
+    | {
+        title: string;
+        technologies: string[];
+        description: string;
+        link: string | null;
+      }[]
+    | null;
 }
 
 function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
@@ -83,9 +85,7 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
       <div className="border-b border-slate-200 pb-4">
         <h1 className="text-xl font-bold text-slate-900 font-display">{fullName}</h1>
         {contactItems.length > 0 && (
-          <p className="text-xs text-slate-500 font-mono mt-1">
-            {contactItems.join(' • ')}
-          </p>
+          <p className="text-xs text-slate-500 font-mono mt-1">{contactItems.join(' • ')}</p>
         )}
       </div>
 
@@ -149,19 +149,20 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
                     </div>
                   )}
 
-                {Array.isArray(exp.bulletPoints) && exp.bulletPoints.map((bullet, bIdx) => (
-                    <div
-                      key={bIdx}
-                      className="p-3 bg-emerald-50/60 border-l-4 border-emerald-500 rounded-r-lg space-y-1"
-                    >
-                      <span className="text-[10px] font-mono font-bold text-emerald-700 uppercase bg-emerald-100 px-1.5 py-0.5 rounded">
-                        AI Rewrite
-                      </span>
-                      <p className="text-xs text-slate-900 font-medium leading-relaxed">
-                        {bullet}
-                      </p>
-                    </div>
-                  ))}
+                  {Array.isArray(exp.bulletPoints) &&
+                    exp.bulletPoints.map((bullet, bIdx) => (
+                      <div
+                        key={bIdx}
+                        className="p-3 bg-emerald-50/60 border-l-4 border-emerald-500 rounded-r-lg space-y-1"
+                      >
+                        <span className="text-[10px] font-mono font-bold text-emerald-700 uppercase bg-emerald-100 px-1.5 py-0.5 rounded">
+                          AI Rewrite
+                        </span>
+                        <p className="text-xs text-slate-900 font-medium leading-relaxed">
+                          {bullet}
+                        </p>
+                      </div>
+                    ))}
                 </div>
               </div>
             ))}
@@ -186,9 +187,7 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
                     {edu.institution}
                     {edu.location ? `, ${edu.location}` : ''}
                   </p>
-                  {edu.details && (
-                    <p className="text-[11px] text-slate-600 mt-1">{edu.details}</p>
-                  )}
+                  {edu.details && <p className="text-[11px] text-slate-600 mt-1">{edu.details}</p>}
                 </div>
                 <span className="text-[11px] font-mono text-slate-400 shrink-0">{edu.year}</span>
               </div>
@@ -204,7 +203,10 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
           </h2>
           <div className="space-y-2">
             {projects.map((proj, idx) => (
-              <div key={idx} className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+              <div
+                key={idx}
+                className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5"
+              >
                 <div className="flex justify-between items-baseline">
                   <h3 className="text-xs font-bold text-slate-900">{proj.title}</h3>
                   {proj.link && (
@@ -219,7 +221,7 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
                   )}
                 </div>
                 <p className="text-xs text-slate-700 leading-relaxed">{proj.description}</p>
-     {Array.isArray(proj.technologies) && proj.technologies.length > 0 && (
+                {Array.isArray(proj.technologies) && proj.technologies.length > 0 && (
                   <div className="flex flex-wrap gap-1 pt-1">
                     {proj.technologies.map((tech, tIdx) => (
                       <span
@@ -301,7 +303,9 @@ const idleState = (
     <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-500 flex items-center justify-center mb-4">
       <FiFileText className="w-6 h-6" />
     </div>
-    <h3 className="text-base font-bold text-slate-800 mb-1">Ready to Accelerate Your Application</h3>
+    <h3 className="text-base font-bold text-slate-800 mb-1">
+      Ready to Accelerate Your Application
+    </h3>
     <p className="text-xs text-slate-400 max-w-sm">
       Upload your master resume and targeted job posting on the left to generate real-time bullet
       rewrites and a tailored cover letter.
@@ -356,7 +360,7 @@ export default function DashboardDisplay({
 
   return coverLetterData ? (
     <div className="h-full">
-        <CoverLetterDisplay data={coverLetterData} />
+      <CoverLetterDisplay data={coverLetterData} />
     </div>
   ) : (
     loadingState(currentStep)

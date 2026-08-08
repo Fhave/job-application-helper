@@ -76,13 +76,13 @@ export default function AuditSidebar({
   domainRelevance,
 }: AuditSidebarProps) {
   const missingKeywordsList = missingKeywords.filter(
-    (keyword): keyword is string => typeof keyword === 'string' && keyword.length > 0,
+    (keyword): keyword is string => typeof keyword === 'string' && keyword.length > 0
   );
   const strongPointsList = strongPoints.filter(
-    (point): point is string => typeof point === 'string' && point.length > 0,
+    (point): point is string => typeof point === 'string' && point.length > 0
   );
   const skillsList = skills.filter(
-    (skill): skill is string => typeof skill === 'string' && skill.length > 0,
+    (skill): skill is string => typeof skill === 'string' && skill.length > 0
   );
 
   return (
