@@ -95,9 +95,6 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
             Professional Summary
           </h2>
           <div className="bg-slate-50 border-l-4 border-sky-500 p-3 rounded-r-xl space-y-1">
-            <span className="text-[10px] font-mono font-bold text-sky-700 uppercase bg-sky-100 px-1.5 py-0.5 rounded">
-              Tailored Match
-            </span>
             <p className="text-xs text-slate-800 leading-relaxed font-sans">{summary}</p>
           </div>
         </div>
@@ -155,9 +152,6 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
                         key={bIdx}
                         className="p-3 bg-emerald-50/60 border-l-4 border-emerald-500 rounded-r-lg space-y-1"
                       >
-                        <span className="text-[10px] font-mono font-bold text-emerald-700 uppercase bg-emerald-100 px-1.5 py-0.5 rounded">
-                          AI Rewrite
-                        </span>
                         <p className="text-xs text-slate-900 font-medium leading-relaxed">
                           {bullet}
                         </p>
