@@ -48,7 +48,7 @@ export default function StatsSection() {
           <AnimatedCounter />
         </div>
 
-        <span className="text-xl sm:text-2xl font-bold text-slate-800 ml-1">
+        <span className="text-6xl sm:text-2xl font-regular text-slate-800 ml-1">
           resumes created today
         </span>
       </div>
@@ -62,8 +62,8 @@ export default function StatsSection() {
           >
             <div className="space-y-4">
               <div className="w-10 h-10 flex items-center justify-center">{feature.icon}</div>
-              <h3 className="text-lg font-bold text-slate-900 tracking-tight">{feature.title}</h3>
-              <p className="text-slate-500 text-xs leading-relaxed">{feature.description}</p>
+              <h3 className="text-3xl font-regular text-slate-900 tracking-tight">{feature.title}</h3>
+              <p className="text-slate-500 text-lg leading-relaxed">{feature.description}</p>
             </div>
           </div>
         ))}

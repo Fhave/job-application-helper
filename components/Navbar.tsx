@@ -103,7 +103,7 @@ export default function Navbar() {
       {/* Mobile Hamburger Button */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="md:hidden p-2 text-slate-700 hover:text-sky-600 focus:outline-none"
+        className="md:hidden p-2 text-sky-600 hover:text-sky-600 focus:outline-none"
         aria-label="Toggle Navigation Menu"
       >
         {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

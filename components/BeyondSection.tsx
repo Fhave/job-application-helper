@@ -14,7 +14,7 @@ export default function BeyondSection() {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-8 sm:space-y-12">
       {/* Section Title */}
-      <h2 className="text-2xl sm:text-4xl font-extrabold text-center text-slate-900 tracking-tight">
+      <h2 className="text-5xl sm:text-4xl font-regular text-center text-slate-900 tracking-tight">
         Way beyond a resume builder...
       </h2>
 
@@ -22,14 +22,14 @@ export default function BeyondSection() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         <div className="lg:col-span-7 bg-indigo-50/40 border border-indigo-100/60 rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden min-h-[400px]">
           <div className="space-y-3 sm:space-y-4 max-w-md z-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-regular bg-indigo-100 text-indigo-700">
               <Sparkles className="w-3.5 h-3.5" />
               AI-powered
             </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-regular text-slate-900 tracking-tight">
               Step-by-step guidance
             </h3>
-            <p className="text-slate-600 text-xs sm:text-lg leading-relaxed">
+            <p className="text-slate-600 text-xs sm:text-lg">
               No need to think much. We guide you through every step of the process. We show you
               what to add, and where to add it. It&apos;s clear and simple.
             </p>
@@ -38,7 +38,7 @@ export default function BeyondSection() {
           <div className="mt-6 mb-8 lg:mb-0 z-10">
             <Link
               href="/app"
-              className="inline-flex items-center gap-1 text-sky-600 font-bold text-lg hover:gap-2 transition-all"
+              className="inline-flex items-center gap-1 text-sky-600 font-regular text-lg hover:gap-2 transition-all"
             >
               <span>Create my resume</span>
               <ChevronRight className="w-4 h-4" />
@@ -51,7 +51,7 @@ export default function BeyondSection() {
               <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
                 <Check className="w-3 h-3 stroke-[3]" />
               </div>
-              <span className="text-xs font-bold text-slate-700">Step 1 • Personal Details</span>
+              <span className="text-xs font-regular text-slate-700">Step 1 • Personal Details</span>
             </div>
 
             {/* Step 2 */}
@@ -59,7 +59,7 @@ export default function BeyondSection() {
               <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
                 <Check className="w-3 h-3 stroke-[3]" />
               </div>
-              <span className="text-xs font-bold text-slate-700">
+              <span className="text-xs font-regular text-slate-700">
                 Step 2 • Professional Summary
               </span>
             </div>
@@ -68,7 +68,7 @@ export default function BeyondSection() {
             <div className="bg-white rounded-xl shadow-lg p-3 sm:p-4 border border-slate-100 space-y-2.5">
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full border-2 border-dashed border-sky-500 animate-spin shrink-0" />
-                <span className="text-xs font-bold text-slate-800">Step 3 • Skills</span>
+                <span className="text-xs font-regular text-slate-800">Step 3 • Skills</span>
                 <FileText className="w-3 h-3 text-slate-400" />
               </div>
 
@@ -91,11 +91,11 @@ export default function BeyondSection() {
         {/* Card 2 */}
         <div className="lg:col-span-5 bg-indigo-50/40 border border-indigo-100/60 rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden min-h-[400px]">
           <div className="space-y-3 sm:space-y-4 z-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-regular bg-indigo-100 text-indigo-700">
               <Sparkles className="w-3.5 h-3.5" />
               AI-powered
             </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-regular text-slate-900 tracking-tight">
               AI writes for you
             </h3>
             <p className="text-slate-600 text-xs sm:text-lg leading-relaxed">
@@ -105,13 +105,13 @@ export default function BeyondSection() {
           </div>
 
           <div className="mt-6 z-10 bg-white rounded-t-xl shadow-lg border border-slate-200 p-4 space-y-2 -mb-8 sm:-mb-10">
-            <div className="text-xs font-bold text-slate-800">Professional Summary</div>
+            <div className="text-xs font-regular text-slate-800">Professional Summary</div>
             <p className="text-[10px] text-slate-400">
               Write 2-4 short sentences to interest the reader...
             </p>
 
             {/* Toolbar */}
-            <div className="flex gap-2 text-[10px] text-slate-500 font-bold border-b border-slate-100 pb-1">
+            <div className="flex gap-2 text-[10px] text-slate-500 font-regular border-b border-slate-100 pb-1">
               <span>B</span>
               <span>I</span>
               <span>U</span>
@@ -137,11 +137,11 @@ export default function BeyondSection() {
         {/* Card 3 */}
         <div className="lg:col-span-5 bg-indigo-50/40 border border-indigo-100/60 rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden min-h-[380px]">
           <div className="space-y-3 sm:space-y-4 z-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-regular bg-indigo-100 text-indigo-700">
               <Sparkles className="w-3.5 h-3.5" />
               AI-powered
             </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-regular text-slate-900 tracking-tight">
               Instant cover letters
             </h3>
             <p className="text-slate-600 text-xs sm:text-lg leading-relaxed">
@@ -166,7 +166,7 @@ export default function BeyondSection() {
         {/* Card 4 */}
         <div className="lg:col-span-7 bg-sky-50/60 border border-sky-100/70 rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden min-h-[400px]">
           <div className="space-y-3 sm:space-y-4 max-w-md z-10">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-regular text-slate-900 tracking-tight">
               Paste the job description
             </h3>
             <p className="text-slate-600 text-xs sm:text-lg leading-relaxed">
@@ -178,7 +178,7 @@ export default function BeyondSection() {
           <div className="mt-6 mb-8 lg:mb-0 z-10">
             <Link
               href="/app"
-              className="inline-flex items-center gap-1 text-sky-600 font-bold text-lg hover:gap-2 transition-all"
+              className="inline-flex items-center gap-1 text-sky-600 font-regular text-lg hover:gap-2 transition-all"
             >
               <span>Tailor my resume</span>
               <ChevronRight className="w-4 h-4" />
@@ -198,7 +198,7 @@ export default function BeyondSection() {
             </div>
 
             <div className="bg-white rounded-2xl p-3.5 sm:p-4 shadow-2xl border border-slate-100 space-y-2.5 relative z-10">
-              <div className="text-xs font-bold text-slate-800">
+              <div className="text-xs font-regular text-slate-800">
                 Paste the job description below:
               </div>
               <div className="bg-slate-50 border border-emerald-400 rounded-lg p-2 text-[10px] text-slate-600 leading-tight space-y-1">
@@ -216,7 +216,7 @@ export default function BeyondSection() {
 
               <div className="flex justify-end gap-2 pt-0.5">
                 <span className="text-[10px] font-semibold text-slate-500 px-2 py-0.5">Cancel</span>
-                <span className="text-[10px] font-bold text-white bg-sky-500 px-3 py-1 rounded-md">
+                <span className="text-[10px] font-regular text-white bg-sky-500 px-3 py-1 rounded-md">
                   Continue
                 </span>
               </div>

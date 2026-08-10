@@ -38,7 +38,7 @@ export default function AnimatedCounter({
   const formattedString = currentValue.toLocaleString('en-US');
 
   return (
-    <div className="inline-flex items-center gap-1  font-bold text-sky-600">
+    <div className="inline-flex items-center gap-1 text-6xl font-regular text-sky-600">
       {formattedString.split('').map((char, index) => {
         if (char === ',') {
           return (
@@ -51,7 +51,7 @@ export default function AnimatedCounter({
         return (
           <span
             key={`digit-${index}`}
-            className="bg-sky-50 px-2 py-1 rounded-md border border-sky-100/60 shadow-xs inline-block text-center min-w-[2rem]"
+            className="bg-sky-50 px-2 py-1 rounded-md border border-sky-100/60 shadow-xs inline-block text-center min-w-[2rem] font-regular"
           >
             {char}
           </span>
