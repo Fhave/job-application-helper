@@ -9,5 +9,4 @@ export default function ErrorBanner({ children }: { children: React.ReactNode })
       <span className="leading-relaxed font-medium">{children}</span>
     </div>
   );
-  p;
 }
