@@ -73,15 +73,15 @@ export default function Footer() {
           <div className="lg:col-span-1 space-y-2">
             <div className="flex items-center gap-2">
               <Logo className="w-8 h-8 group-hover:scale-105 transition-transform" />
-              <span className="text-xl font-bold text-white tracking-tight">Job Sprint AI</span>
+              <span className="text-xl font-regular text-white tracking-tight">Job Sprint AI</span>
             </div>
           </div>
 
           {/* Column 2 */}
           <div className="space-y-6">
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Resume</h4>
-              <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
+              <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">Resume</h4>
+              <ul className="space-y-2.5 text-lg font-regular text-slate-200">
                 {RESUME_LINKS.map((link) => (
                   <li key={link.title}>
                     <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -93,10 +93,10 @@ export default function Footer() {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">
                 Cover Letter
               </h4>
-              <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
+              <ul className="space-y-2.5 text-lg font-regular text-slate-200">
                 {COVER_LETTER_LINKS.map((link) => (
                   <li key={link.title}>
                     <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -111,10 +111,10 @@ export default function Footer() {
           {/* Column 3 */}
           <div className="space-y-6">
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">
                 Job Seekers
               </h4>
-              <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
+              <ul className="space-y-2.5 text-lg font-regular text-slate-200">
                 {JOB_SEEKER_LINKS.map((link) => (
                   <li key={link.title}>
                     <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -126,10 +126,10 @@ export default function Footer() {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">
                 Resources
               </h4>
-              <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
+              <ul className="space-y-2.5 text-lg font-regular text-slate-200">
                 {RESOURCE_LINKS.map((link) => (
                   <li key={link.title}>
                     <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -143,10 +143,10 @@ export default function Footer() {
 
           {/* Column 4 */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">
               Our Company
             </h4>
-            <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
+            <ul className="space-y-2.5 text-lg font-regular text-slate-200">
               {COMPANY_LINKS.map((link) => (
                 <li key={link.title}>
                   <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -159,8 +159,8 @@ export default function Footer() {
 
           {/* Column 5 */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Support</h4>
-            <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
+            <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">Support</h4>
+            <ul className="space-y-2.5 text-lg font-regular text-slate-200">
               {SUPPORT_LINKS.map((link) => (
                 <li key={link.title}>
                   <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -174,7 +174,7 @@ export default function Footer() {
                   className="hover:text-sky-400 transition-colors flex items-center gap-1.5"
                 >
                   Your Privacy Choices
-                  <span className="inline-flex items-center bg-blue-600 text-white text-[9px] px-1 py-0.2 rounded-full font-bold">
+                  <span className="inline-flex items-center bg-blue-600 text-white text-[9px] px-1 py-0.2 rounded-full font-regular">
                     ✓×
                   </span>
                 </Link>
@@ -187,7 +187,7 @@ export default function Footer() {
         <div className="pt-10 border-t border-slate-800/80 flex flex-col lg:flex-row items-center justify-between gap-8">
           {/* Social Media Links */}
           <div className="space-y-2 text-center lg:text-left">
-            <h5 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+            <h5 className="text-[11px] font-regular text-slate-500 uppercase tracking-wider">
               Join Us On Social Media
             </h5>
             <div className="flex items-center gap-2.5 pt-1">

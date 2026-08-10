@@ -10,7 +10,7 @@ export default function ToolsSection() {
     <section className="max-w-7xl mx-auto px-6 py-16 space-y-16">
       {/* Section Title */}
       <div className="text-center space-y-3 max-w-2xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        <h2 className="text-6xl sm:text-4xl font-regular text-slate-900 tracking-tight">
           Everything tailored to your target job
         </h2>
         <p className="text-slate-600 text-base sm:text-lg">
@@ -26,7 +26,7 @@ export default function ToolsSection() {
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xs">
               <Target className="w-5 h-5 text-emerald-600" />
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
+            <h3 className="text-2xl font-regular text-slate-900 tracking-tight">
               Job-Tailored Resumes
             </h3>
             <p className="text-slate-600 text-lg leading-relaxed">
@@ -36,7 +36,7 @@ export default function ToolsSection() {
           </div>
           <div className="bg-white p-5 rounded-2xl shadow-md border border-emerald-100/80 space-y-3">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <span className="text-xs font-bold text-slate-700">Target Role Match</span>
+              <span className="text-xs font-regular text-slate-700">Target Role Match</span>
               <span className="text-xs font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
                 98% Match
               </span>
@@ -54,7 +54,7 @@ export default function ToolsSection() {
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xs">
               <FileText className="w-5 h-5 text-indigo-600" />
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
+            <h3 className="text-2xl font-regular text-slate-900 tracking-tight">
               Matching Cover Letters
             </h3>
             <p className="text-slate-600 text-lg leading-relaxed">
@@ -64,7 +64,7 @@ export default function ToolsSection() {
           </div>
           <div className="bg-white p-5 rounded-2xl shadow-md border border-indigo-100/80 space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 text-xs font-bold shrink-0">
+              <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 text-xs font-regular shrink-0">
                 AI
               </div>
               <div className="text-xs font-medium text-slate-600 italic">
@@ -103,7 +103,7 @@ export default function ToolsSection() {
           </div>
 
           <div className="space-y-1 text-center sm:text-left">
-            <h3 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+            <h3 className="text-2xl font-regular text-slate-900 tracking-tight">
               Ready to tailor your application?
             </h3>
             <p className="text-slate-600 text-lg font-medium">
@@ -113,7 +113,7 @@ export default function ToolsSection() {
         </div>
 
         {/* CTA Button */}
-        <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-lg px-6 py-3 rounded-xl transition shadow-sm whitespace-nowrap cursor-pointer">
+        <button className="bg-sky-500 hover:bg-sky-600 text-white font-regular text-lg px-6 py-3 rounded-md transition shadow-sm whitespace-nowrap cursor-pointer">
           Get Started Free
         </button>
       </div>
