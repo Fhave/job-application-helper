@@ -16,11 +16,9 @@ export default function NotFound() {
 
       <div className="w-full max-w-lg bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-sm text-center relative mt-16 sm:mt-0">
         <div className="relative inline-block mb-4">
-          <span className="text-7xl sm:text-8xl font-black font-mono text-slate-100 select-none">
-            404
-          </span>
+          <span className="text-7xl sm:text-8xl font-black  text-slate-100 select-none">404</span>
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-xl sm:text-2xl font-mono font-bold bg-sky-100 text-sky-700 px-3 py-1 rounded-xl uppercase tracking-wider">
+            <span className="text-xl sm:text-2xl  font-bold bg-sky-100 text-sky-700 px-3 py-1 rounded-xl uppercase tracking-wider">
               Page Not Found
             </span>
           </div>
