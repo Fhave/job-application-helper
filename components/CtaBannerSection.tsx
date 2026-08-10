@@ -14,7 +14,7 @@ export default function CtaBannerSection() {
         <div className="space-y-6 max-w-xl z-10 text-center lg:text-left">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-slate-900 tracking-tight leading-tight">
             Join over{' '}
-            <span className="inline-flex items-baseline font-mono text-sky-600 tracking-wider">
+            <span className="inline-flex items-baseline  text-sky-600 tracking-wider">
               41,000,000
             </span>{' '}
             job seekers
@@ -26,7 +26,7 @@ export default function CtaBannerSection() {
           <div className="pt-2">
             <Link
               href="/app"
-              className="inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm sm:text-base px-8 py-4 rounded-xl transition shadow-md shadow-sky-500/20 active:scale-[0.98]"
+              className="inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white font-bold text-lg sm:text-base px-8 py-4 rounded-xl transition shadow-md shadow-sky-500/20 active:scale-[0.98]"
             >
               Create my resume
             </Link>

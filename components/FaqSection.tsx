@@ -81,7 +81,7 @@ export default function FaqSection() {
               </button>
 
               {isOpen && (
-                <div className="mt-3 text-slate-600 text-sm leading-relaxed pr-8">{faq.answer}</div>
+                <div className="mt-3 text-slate-600 text-lg leading-relaxed pr-8">{faq.answer}</div>
               )}
             </div>
           );

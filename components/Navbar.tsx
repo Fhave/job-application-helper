@@ -34,64 +34,70 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
-      {/* Logo */}
-      <Link href="/#" className="flex items-center gap-2">
+    <nav className="max-w-8xl mx-auto px-6 h-20 flex items-center justify-between relative">
+      <Link href="/#" className="flex items-center gap-2 group">
         <Logo className="w-8 h-8 group-hover:scale-105 transition-transform" />
-        <span className="text-2xl font-black tracking-tight text-slate-900 font-display">
+        <span className="text-2xl font-black tracking-tight text-slate-900">
           Job <span className="text-sky-500">Sprint AI</span>
         </span>
       </Link>
 
-      {/* Desktop Links */}
-      <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
-        {navItems.map((item) => (
-          <div key={item.label} className="relative group">
-            {item.dropdown ? (
-              <>
-                <button
-                  onClick={() => toggleDropdown(item.label)}
-                  className="flex items-center gap-1 hover:text-sky-600 transition py-2"
-                >
+      <div className="hidden md:flex items-center gap-7">
+        {/* Nav Links */}
+        <div className="flex items-center gap-7 text-lg font-regular text-black">
+          {navItems.map((item) => (
+            <div key={item.label} className="relative group">
+              {item.dropdown ? (
+                <>
+                  <button
+                    onClick={() => toggleDropdown(item.label)}
+                    className="flex items-center gap-1 hover:text-sky-600 transition py-2"
+                  >
+                    {item.label}
+                    <ChevronDown
+                      className={`w-4 h-4 text-slate-400 transition-transform ${
+                        activeDropdown === item.label ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+
+                  {/* Desktop Dropdown Submenu */}
+                  <div className="absolute top-full left-0 hidden group-hover:block w-48 bg-white border border-slate-200 rounded-xl shadow-lg py-2 z-50">
+                    {item.dropdown.map((subItem) => (
+                      <Link
+                        key={subItem}
+                        href="/#"
+                        className="block px-4 py-2 text-md font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 transition"
+                      >
+                        {subItem}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <Link href="/#" className="hover:text-sky-600 transition py-2">
                   {item.label}
-                  <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-transform ${activeDropdown === item.label ? 'rotate-180' : ''}`}
-                  />
-                </button>
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
 
-                {/* Desktop Dropdown Submenu */}
-                <div className="absolute top-full left-0 hidden group-hover:block w-48 bg-white border border-slate-200 rounded-xl shadow-lg py-2 z-50">
-                  {item.dropdown.map((subItem) => (
-                    <Link
-                      key={subItem}
-                      href="/#"
-                      className="block px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 transition"
-                    >
-                      {subItem}
-                    </Link>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <Link href="/#" className="hover:text-sky-600 transition py-2">
-                {item.label}
-              </Link>
-            )}
-          </div>
-        ))}
-      </div>
+        {/* Vertical Separator Line */}
+        <div className="h-5 w-[1px] bg-slate-200 shrink-0" aria-hidden="true" />
 
-      {/* Desktop Actions */}
-      <div className="hidden md:flex items-center gap-5">
-        <Link href="/auth" className="text-sm font-semibold text-sky-500 hover:text-sky-600">
-          Sign in
-        </Link>
-        <Link
-          href="/auth"
-          className="bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-xs transition inline-flex items-center"
-        >
-          Create my resume
-        </Link>
+        {/* Auth Buttons */}
+        <div className="flex items-center gap-5">
+          <Link href="/auth" className="text-lg font-semibold text-sky-500 hover:text-sky-600">
+            Sign in
+          </Link>
+          <Link
+            href="/auth"
+            className="bg-sky-500 hover:bg-sky-600 text-white text-lg font-bold px-5 py-2.5 rounded-sm shadow-xs transition inline-flex items-center"
+          >
+            Create my resume
+          </Link>
+        </div>
       </div>
 
       {/* Mobile Hamburger Button */}
@@ -112,11 +118,13 @@ export default function Navbar() {
                 <div>
                   <button
                     onClick={() => toggleDropdown(item.label)}
-                    className="flex items-center justify-between w-full text-sm font-semibold text-slate-700 py-1"
+                    className="flex items-center justify-between w-full text-lg font-semibold text-slate-700 py-1"
                   >
                     <span>{item.label}</span>
                     <ChevronDown
-                      className={`w-4 h-4 text-slate-400 transition-transform ${activeDropdown === item.label ? 'rotate-180' : ''}`}
+                      className={`w-4 h-4 text-slate-400 transition-transform ${
+                        activeDropdown === item.label ? 'rotate-180' : ''
+                      }`}
                     />
                   </button>
 
@@ -140,7 +148,7 @@ export default function Navbar() {
                 <Link
                   href="/#"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block text-sm font-semibold text-slate-700 py-1"
+                  className="block text-lg font-semibold text-slate-700 py-1"
                 >
                   {item.label}
                 </Link>
@@ -153,14 +161,14 @@ export default function Navbar() {
             <Link
               href="/auth"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-center text-sm font-semibold text-sky-500 py-2.5 rounded-xl border border-sky-100 hover:bg-sky-50 transition"
+              className="text-center text-lg font-semibold text-sky-500 py-2.5 rounded-sm border border-sky-100 hover:bg-sky-50 transition"
             >
               Sign in
             </Link>
             <Link
               href="/auth"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-center bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold py-3 rounded-xl shadow-xs transition"
+              className="text-center bg-sky-500 hover:bg-sky-600 text-white text-lg font-bold py-3 rounded-sm shadow-xs transition"
             >
               Create my resume
             </Link>

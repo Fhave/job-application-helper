@@ -95,7 +95,7 @@ export default function ExamplesSection() {
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
                 Get the interview with professional resume examples
               </h2>
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-md">
+              <p className="text-slate-200 text-lg sm:text-base leading-relaxed max-w-md">
                 Impress employers and recruiters. Choose from hundreds of professionally-designed
                 resume examples. Download to Word or PDF.
               </p>
@@ -103,10 +103,10 @@ export default function ExamplesSection() {
 
             {/* CTA Button & Indicator */}
             <div className="flex items-center gap-4">
-              <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition shadow-lg">
+              <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-lg px-6 py-3.5 rounded-xl transition shadow-lg">
                 See all resume examples
               </button>
-              <div className="flex gap-1 text-white/40 font-mono text-sm">&lt;&lt;</div>
+              <div className="flex gap-1 text-white/40  text-lg">&lt;&lt;</div>
             </div>
 
             {/* Trustpilot Rating Widget */}
@@ -194,7 +194,7 @@ export default function ExamplesSection() {
                     />
                   </div>
                   <div>
-                    <h3 className="font-bold text-sm text-slate-900 leading-tight">
+                    <h3 className="font-bold text-lg text-slate-900 leading-tight">
                       Dr. Emmit
                       <br />
                       Jackson

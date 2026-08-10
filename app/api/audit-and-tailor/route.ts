@@ -86,7 +86,7 @@ export async function POST(req: Request) {
     surfacing existing, true impact is always fine; adding anything new is not. A
     sharp, specific rewrite built entirely on real facts beats an embellished one —
     that's the whole point.`,
-      prompt: `
+    prompt: `
     JOB DESCRIPTION:
     ${jobDescription}
 

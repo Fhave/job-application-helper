@@ -31,7 +31,7 @@ export default function AdviceSection() {
         </h2>
         <a
           href="#"
-          className="inline-flex items-center gap-1 text-sky-500 font-bold text-sm hover:gap-2 transition-all"
+          className="inline-flex items-center gap-1 text-sky-500 font-bold text-lg hover:gap-2 transition-all"
         >
           Read the blog <ChevronRight className="w-4 h-4" />
         </a>

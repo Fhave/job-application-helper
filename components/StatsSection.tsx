@@ -44,7 +44,7 @@ export default function StatsSection() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-8 space-y-12">
       <div className="flex flex-row md: flex-col items-center justify-center gap-3">
-        <div className="flex items-center gap-1 font-mono font-bold text-3xl sm:text-4xl text-sky-500">
+        <div className="flex items-center gap-1  font-bold text-3xl sm:text-4xl text-sky-500">
           <AnimatedCounter />
         </div>
 

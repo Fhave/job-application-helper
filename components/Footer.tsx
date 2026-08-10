@@ -81,7 +81,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="space-y-3">
               <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Resume</h4>
-              <ul className="space-y-2.5 text-sm font-semibold text-slate-200">
+              <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
                 {RESUME_LINKS.map((link) => (
                   <li key={link.title}>
                     <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -96,7 +96,7 @@ export default function Footer() {
               <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                 Cover Letter
               </h4>
-              <ul className="space-y-2.5 text-sm font-semibold text-slate-200">
+              <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
                 {COVER_LETTER_LINKS.map((link) => (
                   <li key={link.title}>
                     <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -114,7 +114,7 @@ export default function Footer() {
               <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                 Job Seekers
               </h4>
-              <ul className="space-y-2.5 text-sm font-semibold text-slate-200">
+              <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
                 {JOB_SEEKER_LINKS.map((link) => (
                   <li key={link.title}>
                     <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -129,7 +129,7 @@ export default function Footer() {
               <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                 Resources
               </h4>
-              <ul className="space-y-2.5 text-sm font-semibold text-slate-200">
+              <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
                 {RESOURCE_LINKS.map((link) => (
                   <li key={link.title}>
                     <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -146,7 +146,7 @@ export default function Footer() {
             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
               Our Company
             </h4>
-            <ul className="space-y-2.5 text-sm font-semibold text-slate-200">
+            <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
               {COMPANY_LINKS.map((link) => (
                 <li key={link.title}>
                   <Link href={link.href} className="hover:text-sky-400 transition-colors">
@@ -160,7 +160,7 @@ export default function Footer() {
           {/* Column 5 */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Support</h4>
-            <ul className="space-y-2.5 text-sm font-semibold text-slate-200">
+            <ul className="space-y-2.5 text-lg font-semibold text-slate-200">
               {SUPPORT_LINKS.map((link) => (
                 <li key={link.title}>
                   <Link href={link.href} className="hover:text-sky-400 transition-colors">

@@ -71,7 +71,7 @@ export default function AuditSidebar({
         <div className="flex items-start justify-between gap-2">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <h2 className="text-sm font-bold text-slate-900">Match Audit Analysis</h2>
+              <h2 className="text-lg font-bold text-slate-900">Match Audit Analysis</h2>
               {domainRelevance?.verdict && (
                 <span
                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold border ${verdictStyle.badgeBg}`}
@@ -90,12 +90,10 @@ export default function AuditSidebar({
 
           {typeof displayScore === 'number' && (
             <div className="text-right shrink-0">
-              <span className={`text-2xl font-mono font-bold ${verdictStyle.scoreColor}`}>
+              <span className={`text-2xl  font-bold ${verdictStyle.scoreColor}`}>
                 {displayScore}%
               </span>
-              <p className="text-[10px] font-mono text-slate-400 uppercase tracking-tight">
-                Match Score
-              </p>
+              <p className="text-[10px]  text-slate-400 uppercase tracking-tight">Match Score</p>
             </div>
           )}
         </div>
@@ -109,7 +107,7 @@ export default function AuditSidebar({
 
       {/* Gap Assessment */}
       <div className="space-y-3">
-        <h3 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+        <h3 className="text-xs  font-bold text-slate-400 uppercase tracking-wider">
           Gap Assessment
         </h3>
 
@@ -135,14 +133,14 @@ export default function AuditSidebar({
       {/* Skill Clusters */}
       {skillsList.length > 0 && (
         <div className="space-y-2">
-          <h3 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+          <h3 className="text-xs  font-bold text-slate-400 uppercase tracking-wider">
             Detected Skill Clusters
           </h3>
           <div className="flex flex-wrap gap-1.5">
             {skillsList.map((tag) => (
               <span
                 key={tag}
-                className="text-[11px] font-mono font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200"
+                className="text-[11px]  font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200"
               >
                 {tag}
               </span>

@@ -29,7 +29,7 @@ export default function ToolsSection() {
             <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
               Job-Tailored Resumes
             </h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
+            <p className="text-slate-600 text-lg leading-relaxed">
               Match key skills, adjust experience bullet points, and highlight relevant achievements
               specifically tailored to pass ATS filters and impress hiring managers.
             </p>
@@ -57,7 +57,7 @@ export default function ToolsSection() {
             <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
               Matching Cover Letters
             </h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
+            <p className="text-slate-600 text-lg leading-relaxed">
               Instantly generate targeted cover letters that connect your background directly to the
               company's mission and job requirements.
             </p>
@@ -106,14 +106,14 @@ export default function ToolsSection() {
             <h3 className="text-2xl font-extrabold text-slate-900 tracking-tight">
               Ready to tailor your application?
             </h3>
-            <p className="text-slate-600 text-sm font-medium">
+            <p className="text-slate-600 text-lg font-medium">
               Create a targeted resume and cover letter in under 5 minutes.
             </p>
           </div>
         </div>
 
         {/* CTA Button */}
-        <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm px-6 py-3 rounded-xl transition shadow-sm whitespace-nowrap cursor-pointer">
+        <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-lg px-6 py-3 rounded-xl transition shadow-sm whitespace-nowrap cursor-pointer">
           Get Started Free
         </button>
       </div>

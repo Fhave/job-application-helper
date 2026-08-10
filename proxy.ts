@@ -31,10 +31,15 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isDashboardRoute =
-    request.nextUrl.pathname.startsWith('/dashboard') ||
-    request.nextUrl.pathname.startsWith('/app');
-  const isAuthRoute = request.nextUrl.pathname.startsWith('/auth');
+  const isDashboardRoute = request.nextUrl.pathname.startsWith('/dashboard');
+
+  const isAuthRoute =
+    request.nextUrl.pathname.startsWith('/auth') &&
+    !request.nextUrl.pathname.startsWith('/auth/confirm') &&
+    !request.nextUrl.pathname.startsWith('/auth/reset-password') &&
+    !request.nextUrl.pathname.startsWith('/auth/forgot-password');
+
+  const isEmailVerified = Boolean(user?.email_confirmed_at);
 
   if (!user && isDashboardRoute) {
     const url = request.nextUrl.clone();
@@ -43,6 +48,22 @@ export async function proxy(request: NextRequest) {
   }
 
   if (user && isAuthRoute) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/dashboard';
+    return NextResponse.redirect(url);
+  }
+
+  if (user && !isEmailVerified && isDashboardRoute) {
+    await supabase.auth.signOut();
+
+    const url = request.nextUrl.clone();
+    url.pathname = '/auth';
+    url.searchParams.set('error', 'unverified');
+
+    return NextResponse.redirect(url);
+  }
+
+  if (isAuthRoute && user && isEmailVerified) {
     const url = request.nextUrl.clone();
     url.pathname = '/dashboard';
     return NextResponse.redirect(url);
