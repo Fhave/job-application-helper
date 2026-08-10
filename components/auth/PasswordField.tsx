@@ -20,7 +20,10 @@ export default function PasswordField({
       <div className="flex items-center justify-between">
         <label className="text-xs font-semibold text-slate-700">{label}</label>
         {forgotPasswordLink && (
-          <a href="/auth/forgot-password" className="text-[11px] font-semibold text-sky-600 hover:underline">
+          <a
+            href="/auth/forgot-password"
+            className="text-[11px] font-semibold text-sky-600 hover:underline"
+          >
             Forgot password?
           </a>
         )}

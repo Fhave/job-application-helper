@@ -2,7 +2,7 @@
 
 import React, { useState, useTransition } from 'react';
 import { FiMail, FiUser, FiArrowRight } from 'react-icons/fi';
-import AuthShell from './AuthShell';
+import AuthBody from './AuthBody';
 import FormField from './FormField';
 import PasswordField from './PasswordField';
 import ErrorBanner from './ErrorBanner';
@@ -115,7 +115,7 @@ export default function AuthForm() {
 
   if (mode === 'check-email') {
     return (
-      <AuthShell title="Check your email" subtitle="Almost there">
+      <AuthBody title="Check your email" subtitle="Almost there">
         <div className="text-center space-y-4">
           <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-500 flex items-center justify-center mx-auto">
             <FiMail className="w-6 h-6" />
@@ -132,14 +132,14 @@ export default function AuthForm() {
             Back to sign in
           </button>
         </div>
-      </AuthShell>
+      </AuthBody>
     );
   }
 
   const isSignUp = mode === 'signup';
 
   return (
-    <AuthShell
+    <AuthBody
       title={isSignUp ? 'Accelerate your career search' : 'Welcome back'}
       subtitle={
         isSignUp
@@ -157,7 +157,11 @@ export default function AuthForm() {
               disabled={resendStatus !== 'idle'}
               className="block mt-1.5 font-semibold underline disabled:no-underline disabled:opacity-60"
             >
-              {resendStatus === 'sent' ? 'Verification email resent \u2713' : resendStatus === 'sending' ? 'Sending\u2026' : 'Resend verification email'}
+              {resendStatus === 'sent'
+                ? 'Verification email resent \u2713'
+                : resendStatus === 'sending'
+                  ? 'Sending\u2026'
+                  : 'Resend verification email'}
             </button>
           )}
         </ErrorBanner>
@@ -203,7 +207,9 @@ export default function AuthForm() {
           disabled={isPending}
           className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 group mt-2 shadow-xs"
         >
-          <span>{isPending ? 'Authenticating...' : isSignUp ? 'Start Free Sprint' : 'Sign In'}</span>
+          <span>
+            {isPending ? 'Authenticating...' : isSignUp ? 'Start Free Sprint' : 'Sign In'}
+          </span>
           <FiArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </form>
@@ -212,19 +218,27 @@ export default function AuthForm() {
         {isSignUp ? (
           <p>
             Already have an account?{' '}
-            <button type="button" onClick={() => handleToggleMode('signin')} className="text-sky-600 font-semibold hover:underline">
+            <button
+              type="button"
+              onClick={() => handleToggleMode('signin')}
+              className="text-sky-600 font-semibold hover:underline"
+            >
               Log in
             </button>
           </p>
         ) : (
           <p>
             Don&apos;t have an account?{' '}
-            <button type="button" onClick={() => handleToggleMode('signup')} className="text-sky-600 font-semibold hover:underline">
+            <button
+              type="button"
+              onClick={() => handleToggleMode('signup')}
+              className="text-sky-600 font-semibold hover:underline"
+            >
               Sign up
             </button>
           </p>
         )}
       </div>
-    </AuthShell>
+    </AuthBody>
   );
 }

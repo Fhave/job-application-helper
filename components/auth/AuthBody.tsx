@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { FiArrowLeft } from 'react-icons/fi';
 import Logo from '@/components/Logo';
 
-export default function AuthShell({
+export default function AuthBody({
   title,
   subtitle,
   children,
@@ -33,7 +33,7 @@ export default function AuthShell({
               <span className="text-2xl font-sans font-extrabold tracking-tight text-slate-900">
                 JobSprint
               </span>
-              <span className="text-xs font-mono font-bold bg-sky-100 text-sky-700 px-2 py-0.5 rounded-md uppercase tracking-wide">
+              <span className="text-xs  font-bold bg-sky-100 text-sky-700 px-2 py-0.5 rounded-md uppercase tracking-wide">
                 AI
               </span>
             </div>

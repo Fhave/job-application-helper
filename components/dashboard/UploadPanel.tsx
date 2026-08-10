@@ -19,7 +19,7 @@ export default function UploadPanel({
 }: UploadPanelProps) {
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-5 flex-1">
-      <h2 className="text-sm font-bold text-slate-900">1. Upload Resume</h2>
+      <h2 className="text-lg font-bold text-slate-900">1. Upload Resume</h2>
 
       <div className="border-2 border-dashed border-slate-200 hover:border-sky-400 rounded-xl p-6 text-center transition-colors cursor-pointer bg-slate-50 relative">
         <input
@@ -46,7 +46,7 @@ export default function UploadPanel({
       </div>
 
       <div className="space-y-2">
-        <h2 className="text-sm font-bold text-slate-900">2. Target Job Description</h2>
+        <h2 className="text-lg font-bold text-slate-900">2. Target Job Description</h2>
         <textarea
           value={jobDescription}
           onChange={(event) => onJobDescriptionChange(event.target.value)}

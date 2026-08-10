@@ -90,7 +90,10 @@ export interface DomainRelevance {
   explanation: string;
 }
 
-export const emailSchema = z.string().min(1, 'Email is required').email('Enter a valid email address');
+export const emailSchema = z
+  .string()
+  .min(1, 'Email is required')
+  .email('Enter a valid email address');
 
 export const passwordSchema = z
   .string()

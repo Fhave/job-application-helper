@@ -21,7 +21,7 @@ export default function DashboardHeader({ currentStep, onReset, onSignOut }: Das
             JobSprint <span className="text-sky-500">AI</span>
           </span>
         </Link>
-        <span className="hidden sm:inline-block text-xs font-mono bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md border border-sky-100 font-semibold">
+        <span className="hidden sm:inline-block text-xs  bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md border border-sky-100 font-semibold">
           Sprint Workspace
         </span>
       </div>

@@ -85,13 +85,13 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
       <div className="border-b border-slate-200 pb-4">
         <h1 className="text-xl font-bold text-slate-900 font-display">{fullName}</h1>
         {contactItems.length > 0 && (
-          <p className="text-xs text-slate-500 font-mono mt-1">{contactItems.join(' • ')}</p>
+          <p className="text-xs text-slate-500  mt-1">{contactItems.join(' • ')}</p>
         )}
       </div>
 
       {summary && (
         <div className="space-y-2">
-          <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+          <h2 className="text-xs  font-bold uppercase tracking-wider text-slate-400">
             Professional Summary
           </h2>
           <div className="bg-slate-50 border-l-4 border-sky-500 p-3 rounded-r-xl space-y-1">
@@ -102,14 +102,14 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
 
       {skills && skills.length > 0 && (
         <div className="space-y-2">
-          <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+          <h2 className="text-xs  font-bold uppercase tracking-wider text-slate-400">
             Technical & Professional Skills
           </h2>
           <div className="flex flex-wrap gap-1.5">
             {skills.map((skill, index) => (
               <span
                 key={index}
-                className="text-[11px] font-mono font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200"
+                className="text-[11px]  font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200"
               >
                 {skill}
               </span>
@@ -120,7 +120,7 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
 
       {experience && experience.length > 0 && (
         <div className="space-y-4">
-          <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+          <h2 className="text-xs  font-bold uppercase tracking-wider text-slate-400">
             Work Experience
           </h2>
           <div className="space-y-6">
@@ -131,13 +131,13 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
                     {exp.role} — {exp.company}
                     {exp.location ? ` (${exp.location})` : ''}
                   </h3>
-                  <span className="text-[11px] font-mono text-slate-400">{exp.period}</span>
+                  <span className="text-[11px]  text-slate-400">{exp.period}</span>
                 </div>
 
                 <div className="space-y-2">
                   {exp.originalBullets && exp.originalBullets.length > 0 && (
                     <div className="p-3 bg-red-50/50 border-l-2 border-red-300 rounded-r-lg space-y-1">
-                      <span className="text-[10px] font-mono text-red-600 uppercase font-semibold">
+                      <span className="text-[10px]  text-red-600 uppercase font-semibold">
                         Original Bullet
                       </span>
                       <p className="text-xs text-slate-500 line-through">
@@ -166,9 +166,7 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
 
       {education && education.length > 0 && (
         <div className="space-y-3">
-          <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-            Education
-          </h2>
+          <h2 className="text-xs  font-bold uppercase tracking-wider text-slate-400">Education</h2>
           <div className="space-y-2">
             {education.map((edu, idx) => (
               <div
@@ -183,7 +181,7 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
                   </p>
                   {edu.details && <p className="text-[11px] text-slate-600 mt-1">{edu.details}</p>}
                 </div>
-                <span className="text-[11px] font-mono text-slate-400 shrink-0">{edu.year}</span>
+                <span className="text-[11px]  text-slate-400 shrink-0">{edu.year}</span>
               </div>
             ))}
           </div>
@@ -192,7 +190,7 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
 
       {projects && projects.length > 0 && (
         <div className="space-y-3">
-          <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+          <h2 className="text-xs  font-bold uppercase tracking-wider text-slate-400">
             Featured Projects
           </h2>
           <div className="space-y-2">
@@ -208,7 +206,7 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
                       href={proj.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-[11px] font-mono text-sky-600 hover:underline"
+                      className="text-[11px]  text-sky-600 hover:underline"
                     >
                       View Project
                     </a>
@@ -220,7 +218,7 @@ function ResumeDisplay({ data }: { data?: DeepPartial<CVData> | null }) {
                     {proj.technologies.map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-[10px] font-mono bg-white text-slate-600 px-2 py-0.5 rounded border border-slate-200"
+                        className="text-[10px]  bg-white text-slate-600 px-2 py-0.5 rounded border border-slate-200"
                       >
                         {tech}
                       </span>
@@ -269,7 +267,7 @@ function CoverLetterDisplay({ data }: { data?: DeepPartial<CoverLetterData> | nu
 
   return (
     <div className="space-y-4 font-sans text-xs text-slate-800 leading-relaxed max-w-2xl">
-      <div className="border-b border-slate-100 pb-3 font-mono text-[11px] text-slate-500 space-y-1">
+      <div className="border-b border-slate-100 pb-3  text-[11px] text-slate-500 space-y-1">
         <p>Date: {today}</p>
         <p>
           Re: {recipient.roleTitle}
@@ -311,12 +309,12 @@ const loadingState = (step: PipelineStep) => (
   <div className="h-full flex flex-col items-center justify-center text-center p-8 space-y-4">
     <div className="w-12 h-12 rounded-full border-4 border-sky-100 border-t-sky-500 animate-spin" />
     <div>
-      <h3 className="text-sm font-bold text-slate-900">
+      <h3 className="text-lg font-bold text-slate-900">
         {step === 'parsing' && 'Extracting Resume & Parsing Keywords...'}
         {step === 'analyzing' && 'Auditing Skill Gaps & Rewriting Bullet Points...'}
         {step === 'lettering' && 'Crafting Matching Cover Letter...'}
       </h3>
-      <p className="text-xs font-mono text-slate-400 mt-1">AI Pipeline Processing Stream</p>
+      <p className="text-xs  text-slate-400 mt-1">AI Pipeline Processing Stream</p>
     </div>
   </div>
 );

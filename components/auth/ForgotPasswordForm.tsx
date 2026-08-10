@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from 'react';
 import { FiMail, FiArrowRight } from 'react-icons/fi';
-import AuthShell from './AuthShell';
+import AuthBody from './AuthBody';
 import FormField from './FormField';
 import ErrorBanner from './ErrorBanner';
 import { requestPasswordResetAction } from '@/actions/auth';
@@ -31,16 +31,16 @@ export default function ForgotPasswordForm() {
 
   if (sent) {
     return (
-      <AuthShell title="Check your email" subtitle="Reset link on its way">
+      <AuthBody title="Check your email" subtitle="Reset link on its way">
         <p className="text-xs text-slate-600 text-center leading-relaxed">
           If an account exists for <strong>{email}</strong>, a password reset link is on its way.
         </p>
-      </AuthShell>
+      </AuthBody>
     );
   }
 
   return (
-    <AuthShell title="Forgot your password?" subtitle="We'll email you a link to reset it">
+    <AuthBody title="Forgot your password?" subtitle="We'll email you a link to reset it">
       {error && <ErrorBanner>{error}</ErrorBanner>}
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <FormField
@@ -60,6 +60,6 @@ export default function ForgotPasswordForm() {
           <FiArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </form>
-    </AuthShell>
+    </AuthBody>
   );
 }

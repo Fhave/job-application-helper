@@ -128,7 +128,7 @@ export async function POST(req: Request) {
       Being memorable and being truthful are not in tension here; do both.
 
       ${domainRelevance?.verdict === 'partial' ? `\n  Note: this candidate is only a partial match for this role (${domainRelevance.explanation}). Lean on genuinely transferable experience rather than overstating direct relevance — the hook can still be sharp without pretending the fit is stronger than it is.` : ''}`,
-prompt: promptText,
+    prompt: promptText,
   });
 
   return result.toTextStreamResponse();

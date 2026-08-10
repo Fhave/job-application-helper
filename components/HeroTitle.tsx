@@ -17,13 +17,11 @@ export default function HeroTitle() {
 
   useEffect(() => {
     const targetPhrase = phrases[phraseIndex];
-    let typingSpeed = isDeleting ? 40 : 80; // Speed up when deleting
+    let typingSpeed = isDeleting ? 40 : 80;
 
     if (!isDeleting && currentText === targetPhrase) {
-      // Pause at full word before starting to delete
       typingSpeed = 2000;
     } else if (isDeleting && currentText === '') {
-      // Finished deleting, move to next phrase
       setIsDeleting(false);
       setPhraseIndex((prev) => (prev + 1) % phrases.length);
       typingSpeed = 500;
@@ -44,11 +42,11 @@ export default function HeroTitle() {
   }, [currentText, isDeleting, phraseIndex, phrases]);
 
   return (
-    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-normal text-slate-900 tracking-tight leading-[1.12]">
       This resume builder gets you{' '}
-      <span className="text-sky-500 inline-block min-w-[200px]">
-        {currentText}
-        <span className="animate-pulse text-sky-500 font-normal">|</span>
+      <span className="text-sky-500 inline-inline-block align-bottom min-h-[1.12em]">
+        <span>{currentText || '\u00A0'}</span>
+        <span className="w-[3px] h-[0.85em] bg-sky-500 animate-pulse ml-0.5 rounded-full inline-block align-middle" />
       </span>
     </h1>
   );

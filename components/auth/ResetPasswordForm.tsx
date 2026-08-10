@@ -3,7 +3,7 @@
 import { useState, useEffect, useTransition } from 'react';
 import { FiArrowRight, FiLoader } from 'react-icons/fi';
 import { createClient } from '@/lib/supabase/client';
-import AuthShell from './AuthShell';
+import AuthBody from './AuthBody';
 import PasswordField from './PasswordField';
 import ErrorBanner from './ErrorBanner';
 import { updatePasswordAction } from '@/actions/auth';
@@ -21,14 +21,13 @@ export default function ResetPasswordForm() {
   useEffect(() => {
     const initializeRecoverySession = async () => {
       try {
-        // 1. Check if session already exists
-        const { data: { session } } = await supabase.auth.getSession();
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
         if (session) {
           setIsVerifyingSession(false);
           return;
         }
-
-        // 2. Parse hash fragment from window.location (#access_token=...&refresh_token=...)
         const hash = window.location.hash;
         if (hash && hash.includes('access_token')) {
           const params = new URLSearchParams(hash.replace('#', '?'));
@@ -48,16 +47,12 @@ export default function ResetPasswordForm() {
           }
         }
 
-        // 3. Listen for background auth state events
-        const { data: authListener } = supabase.auth.onAuthStateChange(
-          (event, session) => {
-            if (event === 'PASSWORD_RECOVERY' || session) {
-              setIsVerifyingSession(false);
-            }
+        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+          if (event === 'PASSWORD_RECOVERY' || session) {
+            setIsVerifyingSession(false);
           }
-        );
+        });
 
-        // Fallback error if no token exists in hash or session
         const timeout = setTimeout(() => {
           setIsVerifyingSession((prev) => {
             if (prev) {
@@ -112,17 +107,17 @@ export default function ResetPasswordForm() {
 
   if (isVerifyingSession) {
     return (
-      <AuthShell title="Verifying reset link" subtitle="Establishing secure session...">
+      <AuthBody title="Verifying reset link" subtitle="Establishing secure session...">
         <div className="flex flex-col items-center justify-center py-8 space-y-3">
           <FiLoader className="w-6 h-6 text-sky-500 animate-spin" />
           <p className="text-xs text-slate-500">Please wait while we verify your recovery link.</p>
         </div>
-      </AuthShell>
+      </AuthBody>
     );
   }
 
   return (
-    <AuthShell title="Set a new password" subtitle="Choose something you haven't used before">
+    <AuthBody title="Set a new password" subtitle="Choose something you haven't used before">
       {error && <ErrorBanner>{error}</ErrorBanner>}
 
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
@@ -151,6 +146,6 @@ export default function ResetPasswordForm() {
           <FiArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </form>
-    </AuthShell>
+    </AuthBody>
   );
 }

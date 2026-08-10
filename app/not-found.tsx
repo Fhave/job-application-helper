@@ -27,7 +27,7 @@ export default function NotFound() {
         <h1 className="text-2xl sm:text-3xl font-extrabold font-display text-slate-900 mb-3">
           Looks like this route sprinted away
         </h1>
-        <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto mb-8">
+        <p className="text-xs sm:text-lg text-slate-500 max-w-sm mx-auto mb-8">
           The page you are looking for doesn't exist, was moved, or is temporarily unavailable.
         </p>
 

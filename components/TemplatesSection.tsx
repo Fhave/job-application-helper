@@ -102,7 +102,7 @@ export default function TemplatesSection() {
                   <div className="text-center mb-3 h-12 flex flex-col justify-end">
                     <h3
                       className={`font-semibold ${
-                        isCenter ? 'text-slate-900 text-lg font-bold' : 'text-slate-700 text-sm'
+                        isCenter ? 'text-slate-900 text-lg font-bold' : 'text-slate-700 text-lg'
                       }`}
                     >
                       {template.category}
@@ -159,7 +159,7 @@ export default function TemplatesSection() {
                         isCenter ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
                       }`}
                     >
-                      <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm px-6 py-3 rounded-lg shadow-lg transition-all transform hover:scale-105 active:scale-95">
+                      <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-lg px-6 py-3 rounded-lg shadow-lg transition-all transform hover:scale-105 active:scale-95">
                         Use this template
                       </button>
                     </div>

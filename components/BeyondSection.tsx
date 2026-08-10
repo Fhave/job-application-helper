@@ -29,7 +29,7 @@ export default function BeyondSection() {
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Step-by-step guidance
             </h3>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            <p className="text-slate-600 text-xs sm:text-lg leading-relaxed">
               No need to think much. We guide you through every step of the process. We show you
               what to add, and where to add it. It&apos;s clear and simple.
             </p>
@@ -38,7 +38,7 @@ export default function BeyondSection() {
           <div className="mt-6 mb-8 lg:mb-0 z-10">
             <Link
               href="/app"
-              className="inline-flex items-center gap-1 text-sky-600 font-bold text-sm hover:gap-2 transition-all"
+              className="inline-flex items-center gap-1 text-sky-600 font-bold text-lg hover:gap-2 transition-all"
             >
               <span>Create my resume</span>
               <ChevronRight className="w-4 h-4" />
@@ -98,7 +98,7 @@ export default function BeyondSection() {
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               AI writes for you
             </h3>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            <p className="text-slate-600 text-xs sm:text-lg leading-relaxed">
               Speak into the mic and the AI fixes mistakes. Stuck? Click to add phrases that sound
               professional.
             </p>
@@ -144,7 +144,7 @@ export default function BeyondSection() {
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Instant cover letters
             </h3>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            <p className="text-slate-600 text-xs sm:text-lg leading-relaxed">
               Just paste the job description. We create a matching cover letter using your resume in
               under 2 minutes.
             </p>
@@ -153,7 +153,7 @@ export default function BeyondSection() {
           <div className="mt-6 mx-auto w-4/5 sm:w-3/4 bg-white rounded-t-xl shadow-xl border border-slate-200 p-4 -mb-8 sm:-mb-10 space-y-2">
             <div className="text-center border-b pb-2">
               <div className="text-xs font-black text-slate-800">JORGE SANDERS</div>
-              <div className="text-[8px] text-slate-400 font-mono">Financial Analyst</div>
+              <div className="text-[8px] text-slate-400 ">Financial Analyst</div>
             </div>
             <div className="space-y-1.5">
               <div className="h-1 bg-slate-200 rounded w-full" />
@@ -169,7 +169,7 @@ export default function BeyondSection() {
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Paste the job description
             </h3>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            <p className="text-slate-600 text-xs sm:text-lg leading-relaxed">
               Simple and effective. Paste the job description details and we pre-build your resume
               to match recruiter expectations.
             </p>
@@ -178,7 +178,7 @@ export default function BeyondSection() {
           <div className="mt-6 mb-8 lg:mb-0 z-10">
             <Link
               href="/app"
-              className="inline-flex items-center gap-1 text-sky-600 font-bold text-sm hover:gap-2 transition-all"
+              className="inline-flex items-center gap-1 text-sky-600 font-bold text-lg hover:gap-2 transition-all"
             >
               <span>Tailor my resume</span>
               <ChevronRight className="w-4 h-4" />
@@ -192,7 +192,7 @@ export default function BeyondSection() {
                 <div className="w-2 h-2 rounded-full bg-amber-400" />
                 <div className="w-2 h-2 rounded-full bg-emerald-400" />
               </div>
-              <div className="bg-slate-800 text-slate-300 text-[10px] px-2 py-1 rounded font-mono">
+              <div className="bg-slate-800 text-slate-300 text-[10px] px-2 py-1 rounded ">
                 Job Description Text Input
               </div>
             </div>

@@ -13,14 +13,14 @@ const stepClasses = (active: boolean) =>
 export default function PipelineStepper({ currentStep }: PipelineStepperProps) {
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
-      <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-4">
+      <h2 className="text-xs  font-bold uppercase tracking-wider text-slate-400 mb-4">
         Pipeline Status
       </h2>
 
       <div className="space-y-3">
         <div className="flex items-center gap-3">
           <div
-            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${
+            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold  transition-colors ${
               currentStep === 'input' ? 'bg-sky-500 text-white' : 'bg-emerald-500 text-white'
             }`}
           >
@@ -34,7 +34,7 @@ export default function PipelineStepper({ currentStep }: PipelineStepperProps) {
 
         <div className="flex items-center gap-3">
           <div
-            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${
+            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold  transition-colors ${
               ['parsing', 'analyzing'].includes(currentStep)
                 ? 'bg-sky-500 text-white animate-pulse'
                 : ['ready', 'lettering', 'ready'].includes(currentStep)
@@ -56,7 +56,7 @@ export default function PipelineStepper({ currentStep }: PipelineStepperProps) {
 
         <div className="flex items-center gap-3">
           <div
-            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${
+            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold  transition-colors ${
               currentStep === 'lettering'
                 ? 'bg-sky-500 text-white animate-pulse'
                 : currentStep === 'ready'
