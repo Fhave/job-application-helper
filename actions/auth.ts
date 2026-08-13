@@ -28,7 +28,7 @@ export async function loginAction(formData: FormData) {
   if (error) {
     if (error.message.toLowerCase().includes('email not confirmed')) {
       return {
-        error: 'Your email isn’t verified yet. Check your inbox for the verification link.',
+        error: 'Your email isnt verified yet. Check your inbox for the verification link.',
         code: 'email_not_confirmed' as const,
         email: parsed.data.email,
       };
@@ -36,12 +36,16 @@ export async function loginAction(formData: FormData) {
     return { error: error.message };
   }
 
-  if (data.user && !data.user.email_confirmed_at) {
+  const userIsVerified =
+    Boolean(data.user?.email_confirmed_at) ||
+    Boolean(data.user?.confirmed_at);
+
+  if (data.user && !userIsVerified) {
     await supabase.auth.signOut();
     await clearSessionExpiryCookie();
 
     return {
-      error: 'Your email isn’t verified yet. Check your inbox for the verification link.',
+      error: 'Your email isnt verified yet. Check your inbox for the verification link.',
       code: 'email_not_confirmed' as const,
       email: parsed.data.email,
     };
@@ -69,12 +73,14 @@ export async function signupAction(formData: FormData) {
   }
 
   const { name, email, password } = parsed.data;
-  const supabase = await createClient();
 
-  const { error } = await supabase.auth.signUp({
+  const supabaseAdmin = await createAdminClient();
+
+  const { error } = await supabaseAdmin.auth.admin.createUser({
     email,
     password,
-    options: { data: { full_name: name } },
+    email_confirm: false,
+    user_metadata: { full_name: name },
   });
 
   if (error) {
@@ -94,7 +100,7 @@ export async function signOutAction() {
   await supabase.auth.signOut();
   await clearSessionExpiryCookie();
   revalidatePath('/', 'layout');
-  redirect('/auth');
+  return { success: true };
 }
 
 export async function resendVerificationAction(email: string) {
@@ -141,17 +147,24 @@ export async function updatePasswordAction(formData: FormData) {
     return { error: error.message };
   }
 
+  await supabase.auth.signOut();
+  await clearSessionExpiryCookie();
+
   revalidatePath('/', 'layout');
-  redirect('/auth');
+  redirect('/auth?password_updated=true');
 }
 
 async function sendVerificationEmail(email: string) {
   try {
     const supabaseAdmin = await createAdminClient();
+    const siteUrl = process.env.NEXT_SITE_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
     const { data, error } = await supabaseAdmin.auth.admin.generateLink({
-      type: 'magiclink',
+      type: 'signup', // 👈 'signup' confirms email without logging them in prematurely
       email,
+      options: {
+        redirectTo: `${siteUrl}/auth?verified=true`, // 👈 Append query param
+      },
     });
 
     if (error || !data.properties?.action_link) {
@@ -176,7 +189,7 @@ async function sendVerificationEmail(email: string) {
     return { success: true };
   } catch (err) {
     console.error('Email verification error:', err);
-    return { error: 'Failed to send verification email. Please check server configuration.' };
+    return { error: 'Failed to send verification email.' };
   }
 }
 

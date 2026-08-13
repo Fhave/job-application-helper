@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useTransition } from 'react';
-import { FiMail, FiUser, FiArrowRight } from 'react-icons/fi';
+import React, { useState, useEffect, useTransition } from 'react';
+import { FiMail, FiUser, FiArrowRight, FiCheckCircle } from 'react-icons/fi';
+import { useSearchParams } from 'next/navigation';
 import AuthBody from './AuthBody';
 import FormField from './FormField';
 import PasswordField from './PasswordField';
@@ -12,24 +13,34 @@ import { loginSchema, signupSchema } from '@/lib/types';
 type ViewMode = 'signin' | 'signup' | 'check-email';
 
 export default function AuthForm() {
+  const searchParams = useSearchParams();
   const [mode, setMode] = useState<ViewMode>('signin');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [unverifiedEmail, setUnverifiedEmail] = useState<string | null>(null);
   const [resendStatus, setResendStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
   const [checkEmailAddress, setCheckEmailAddress] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+
   const [isPending, startTransition] = useTransition();
 
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  useEffect(() => {
+    if (searchParams.get('verified') === 'true') {
+      setSuccessMessage('Email verified successfully. You can now sign in.');
+    } else if (searchParams.get('password_updated') === 'true') {
+      setSuccessMessage('Password reset successful. Please sign in with your new password.');
+    }
+  }, [searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
+    setSuccessMessage(null);
     setUnverifiedEmail(null);
     setFieldErrors({});
 
@@ -49,6 +60,8 @@ export default function AuthForm() {
     data.append('email', formData.email);
     data.append('password', formData.password);
     if (mode === 'signup') data.append('name', formData.name);
+
+    const action = mode === 'signup' ? signupAction : loginAction;
 
     startTransition(async () => {
       try {
@@ -70,28 +83,10 @@ export default function AuthForm() {
           setMode('check-email');
         }
       } catch (err) {
+        if (err && typeof err === 'object' && 'digest' in err && String(err.digest).startsWith('NEXT_REDIRECT')) {
+          throw err;
+        }
         setErrorMessage('An unexpected server error occurred. Please try again.');
-      }
-    });
-    const action = mode === 'signup' ? signupAction : loginAction;
-
-    startTransition(async () => {
-      const result = await action(data);
-
-      if (result?.error) {
-        setErrorMessage(result.error);
-        if ('fieldErrors' in result && result.fieldErrors) {
-          setFieldErrors(result.fieldErrors as Record<string, string[]>);
-        }
-        if ('code' in result && result.code === 'email_not_confirmed') {
-          setUnverifiedEmail(result.email);
-        }
-        return;
-      }
-
-      if ('checkEmail' in result && result.checkEmail) {
-        setCheckEmailAddress(result.email);
-        setMode('check-email');
       }
     });
   };
@@ -101,13 +96,19 @@ export default function AuthForm() {
     setResendStatus('sending');
     startTransition(async () => {
       const result = await resendVerificationAction(unverifiedEmail);
-      setResendStatus(result?.error ? 'idle' : 'sent');
+      if (result?.error) {
+        setResendStatus('idle');
+        setErrorMessage(result.error);
+      } else {
+        setResendStatus('sent');
+      }
     });
   };
 
-  const handleToggleMode = (nextMode: 'signin' | 'signup') => {
+  const handleToggleMode = (nextMode: ViewMode) => {
     setMode(nextMode);
     setErrorMessage(null);
+    setSuccessMessage(null);
     setUnverifiedEmail(null);
     setFieldErrors({});
     setFormData({ name: '', email: '', password: '' });
@@ -147,6 +148,13 @@ export default function AuthForm() {
           : 'Sign in to access your saved job applications and pipelines'
       }
     >
+      {successMessage && (
+        <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 flex items-center gap-2">
+          <FiCheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+          <span>{successMessage}</span>
+        </div>
+      )}
+
       {errorMessage && (
         <ErrorBanner>
           {errorMessage}
