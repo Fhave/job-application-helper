@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useTransition } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import { experimental_useObject as useObject } from '@ai-sdk/react';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import PipelineStepper from '@/components/dashboard/PipelineStepper';
@@ -14,6 +14,7 @@ import { AuditAndCVSchema, CoverLetterSchema } from '@/lib/types';
 import { signOutAction } from '@/actions/auth';
 import { parsePDFAction } from '@/actions/dashboard';
 import { checkLooksLikeResume, checkLooksLikeJobDescription } from '@/lib/validation';
+import { SESSION_TIMEOUT_COOKIE } from '@/lib/auth/session';
 
 export default function DashboardPage() {
   const [currentStep, setCurrentStep] = useState<PipelineStep>('input');
@@ -24,6 +25,28 @@ export default function DashboardPage() {
   const [isExporting, setIsExporting] = useState(false);
   const [isPending, startTransition] = useTransition();
   const [inputError, setInputError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const checkExpiry = () => {
+      const sessionCookie = document.cookie
+        .split('; ')
+        .find((cookie) => cookie.startsWith(`${SESSION_TIMEOUT_COOKIE}=`));
+
+      if (!sessionCookie) {
+        void signOutAction();
+        return;
+      }
+
+      const expiryTimestamp = Number(sessionCookie.split('=')[1]);
+      if (!Number.isFinite(expiryTimestamp) || Date.now() >= expiryTimestamp) {
+        void signOutAction();
+      }
+    };
+
+    checkExpiry();
+    const interval = window.setInterval(checkExpiry, 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
 
   const auditAndCV = useObject({
     api: '/api/audit-and-tailor',

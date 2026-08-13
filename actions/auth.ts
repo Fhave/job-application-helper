@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { createClient, createAdminClient } from '@/lib/supabase/server';
 import { resend } from '@/lib/resend';
 import { loginSchema, signupSchema, forgotPasswordSchema, resetPasswordSchema } from '@/lib/types';
+import { clearSessionExpiryCookie, setSessionExpiryCookie } from '@/lib/auth/session';
 
 export async function loginAction(formData: FormData) {
   const parsed = loginSchema.safeParse({
@@ -37,6 +38,7 @@ export async function loginAction(formData: FormData) {
 
   if (data.user && !data.user.email_confirmed_at) {
     await supabase.auth.signOut();
+    await clearSessionExpiryCookie();
 
     return {
       error: 'Your email isn’t verified yet. Check your inbox for the verification link.',
@@ -44,6 +46,8 @@ export async function loginAction(formData: FormData) {
       email: parsed.data.email,
     };
   }
+
+  await setSessionExpiryCookie();
 
   revalidatePath('/', 'layout');
   redirect('/dashboard');
@@ -88,6 +92,7 @@ export async function signupAction(formData: FormData) {
 export async function signOutAction() {
   const supabase = await createClient();
   await supabase.auth.signOut();
+  await clearSessionExpiryCookie();
   revalidatePath('/', 'layout');
   redirect('/auth');
 }
