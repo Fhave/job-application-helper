@@ -54,7 +54,7 @@ export default function ForgotPasswordForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 group"
+          className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white font-regular text-sm py-3 rounded-xl transition-all flex items-center justify-center gap-2 group"
         >
           <span>{isPending ? 'Sending...' : 'Send reset link'}</span>
           <FiArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

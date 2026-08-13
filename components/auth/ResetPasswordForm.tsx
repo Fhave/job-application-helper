@@ -140,7 +140,7 @@ export default function ResetPasswordForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 group mt-2 shadow-xs"
+          className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white font-regular text-sm py-3 rounded-xl transition-all flex items-center justify-center gap-2 group mt-2 shadow-xs"
         >
           <span>{isPending ? 'Updating...' : 'Update password'}</span>
           <FiArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

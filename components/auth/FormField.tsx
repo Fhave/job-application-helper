@@ -14,7 +14,7 @@ export default function FormField({
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="space-y-1.5">
-      <label className="text-xs font-semibold text-slate-700">{label}</label>
+      <label className="text-sm font-regular text-slate-700">{label}</label>
       <div className="relative">
         <Icon className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
@@ -24,7 +24,7 @@ export default function FormField({
           }`}
         />
       </div>
-      {error && <p className="text-[11px] text-red-600 font-medium pl-1">{error}</p>}
+      {error && <p className="text-[11px] text-red-600 font-regular pl-1">{error}</p>}
     </div>
   );
 }

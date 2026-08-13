@@ -18,11 +18,11 @@ export default function PasswordField({
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-semibold text-slate-700">{label}</label>
+        <label className="text-sm font-regular text-slate-700">{label}</label>
         {forgotPasswordLink && (
           <a
             href="/auth/forgot-password"
-            className="text-[11px] font-semibold text-sky-600 hover:underline"
+            className="text-sm font-regular text-sky-600 hover:underline"
           >
             Forgot password?
           </a>

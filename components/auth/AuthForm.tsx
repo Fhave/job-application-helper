@@ -127,7 +127,7 @@ export default function AuthForm() {
           <button
             type="button"
             onClick={() => handleToggleMode('signin')}
-            className="text-xs font-semibold text-sky-600 hover:underline"
+            className="text-sm font-regular text-sky-600 hover:underline"
           >
             Back to sign in
           </button>
@@ -205,7 +205,7 @@ export default function AuthForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 group mt-2 shadow-xs"
+          className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white font-regular text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 group mt-2 shadow-xs"
         >
           <span>
             {isPending ? 'Authenticating...' : isSignUp ? 'Start Free Sprint' : 'Sign In'}
