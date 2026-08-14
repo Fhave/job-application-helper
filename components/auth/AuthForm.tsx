@@ -95,7 +95,7 @@ export default function AuthForm() {
     if (!unverifiedEmail) return;
     setResendStatus('sending');
     startTransition(async () => {
-      const result = await resendVerificationAction(unverifiedEmail);
+      const result = await resendVerificationAction(unverifiedEmail, formData.password);
       if (result?.error) {
         setResendStatus('idle');
         setErrorMessage(result.error);

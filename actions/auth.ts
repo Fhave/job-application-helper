@@ -87,7 +87,7 @@ export async function signupAction(formData: FormData) {
     return { error: error.message };
   }
 
-  const emailResult = await sendVerificationEmail(email);
+  const emailResult = await sendVerificationEmail(email, password);
   if (emailResult.error) {
     return { error: emailResult.error };
   }
@@ -103,8 +103,8 @@ export async function signOutAction() {
   return { success: true };
 }
 
-export async function resendVerificationAction(email: string) {
-  return sendVerificationEmail(email);
+export async function resendVerificationAction(email: string, password: string) {
+  return sendVerificationEmail(email, password);
 }
 
 export async function requestPasswordResetAction(formData: FormData) {
@@ -154,16 +154,17 @@ export async function updatePasswordAction(formData: FormData) {
   redirect('/auth?password_updated=true');
 }
 
-async function sendVerificationEmail(email: string) {
+async function sendVerificationEmail(email: string, password: string) {
   try {
     const supabaseAdmin = await createAdminClient();
-    const siteUrl = process.env.NEXT_SITE_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    const siteUrl = process.env.NEXT_SITE_URL;
 
     const { data, error } = await supabaseAdmin.auth.admin.generateLink({
-      type: 'signup', // 👈 'signup' confirms email without logging them in prematurely
+      type: 'signup',
       email,
+      password,
       options: {
-        redirectTo: `${siteUrl}/auth?verified=true`, // 👈 Append query param
+        redirectTo: `${siteUrl}/auth?verified=true`,
       },
     });
 
