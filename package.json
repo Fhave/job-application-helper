@@ -22,6 +22,7 @@
     "pdfkit": "^0.19.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-email": "^6.9.2",
     "react-icons": "^5.2.1",
     "resend": "^6.18.1",
     "unpdf": "^1.8.0",

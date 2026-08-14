@@ -6,6 +6,8 @@ import { createClient, createAdminClient } from '@/lib/supabase/server';
 import { resend } from '@/lib/resend';
 import { loginSchema, signupSchema, forgotPasswordSchema, resetPasswordSchema } from '@/lib/types';
 import { clearSessionExpiryCookie, setSessionExpiryCookie } from '@/lib/auth/session';
+import { VerificationEmailTemplate } from '@/components/email-templates/Verification';
+import { ResetPasswordEmailTemplate } from '@/components/email-templates/PasswordReset';
 
 export async function loginAction(formData: FormData) {
   const parsed = loginSchema.safeParse({
@@ -172,19 +174,13 @@ async function sendVerificationEmail(email: string, password: string) {
       return { error: 'Failed to generate verification link.' };
     }
 
+    const actionUrl = data.properties.action_link;
+
     await resend.emails.send({
       from: 'JobSprint AI <onboarding@resend.dev>',
       to: [email],
       subject: 'Verify your JobSprint AI account',
-      html: `
-        <div style="font-family: sans-serif; padding: 20px;">
-          <h2>Confirm your email</h2>
-          <p>Click below to verify your account and sign in to JobSprint AI:</p>
-          <a href="${data.properties.action_link}" style="background: #0284c7; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; display: inline-block;">
-            Verify my email
-          </a>
-        </div>
-      `,
+      react: <VerificationEmailTemplate actionUrl={actionUrl}/>,
     });
 
     return { success: true };
@@ -211,19 +207,13 @@ async function sendPasswordResetEmail(email: string) {
       return { error: 'Failed to generate reset link.' };
     }
 
+    const actionUrl = data.properties.action_link;
+
     await resend.emails.send({
       from: 'JobSprint AI <onboarding@resend.dev>',
       to: [email],
       subject: 'Reset your JobSprint AI password',
-      html: `
-        <div style="font-family: sans-serif; padding: 20px;">
-          <h2>Reset your password</h2>
-          <p>Click below to choose a new password. This link expires soon, so use it right away.</p>
-          <a href="${data.properties.action_link}" style="background: #0284c7; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; display: inline-block;">
-            Reset my password
-          </a>
-        </div>
-      `,
+      react: <ResetPasswordEmailTemplate actionUrl={actionUrl} />,
     });
 
     return { success: true };
