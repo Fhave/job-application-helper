@@ -43,7 +43,7 @@ const features: Feature[] = [
 export default function StatsSection() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-8 space-y-12">
-      <div className="flex flex-row md: flex-col items-center justify-center gap-3">
+      <div className="flex flex-row md:flex-col items-center justify-center gap-3">
         <div className="flex items-center gap-1  font-bold text-3xl sm:text-4xl text-sky-500">
           <AnimatedCounter />
         </div>
@@ -62,7 +62,7 @@ export default function StatsSection() {
           >
             <div className="space-y-4">
               <div className="w-10 h-10 flex items-center justify-center">{feature.icon}</div>
-              <h3 className="text-3xl font-regular text-slate-900 tracking-tight">{feature.title}</h3>
+              <h3 className="text-2xl font-regular text-slate-900 tracking-tight">{feature.title}</h3>
               <p className="text-slate-500 text-lg leading-relaxed">{feature.description}</p>
             </div>
           </div>

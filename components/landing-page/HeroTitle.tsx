@@ -42,7 +42,7 @@ export default function HeroTitle() {
   }, [currentText, isDeleting, phraseIndex, phrases]);
 
   return (
-    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-normal text-slate-900 tracking-tight leading-[1.12]">
+    <h1 className="text-2xl sm:text-5xl lg:text-7xl text-center md:text-left font-normal text-slate-900 tracking-tight leading-[1.12]">
       This resume builder gets you{' '}
       <span className="text-sky-500 inline-inline-block align-bottom min-h-[1.12em]">
         <span>{currentText || '\u00A0'}</span>

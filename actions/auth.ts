@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { createClient, createAdminClient } from '@/lib/supabase/server';
 import { resend } from '@/lib/resend';
 import { loginSchema, signupSchema, forgotPasswordSchema, resetPasswordSchema } from '@/lib/types';
+import { clearSessionExpiryCookie, setSessionExpiryCookie } from '@/lib/auth/session';
 
 export async function loginAction(formData: FormData) {
   const parsed = loginSchema.safeParse({
@@ -27,7 +28,7 @@ export async function loginAction(formData: FormData) {
   if (error) {
     if (error.message.toLowerCase().includes('email not confirmed')) {
       return {
-        error: 'Your email isn’t verified yet. Check your inbox for the verification link.',
+        error: 'Your email isnt verified yet. Check your inbox for the verification link.',
         code: 'email_not_confirmed' as const,
         email: parsed.data.email,
       };
@@ -35,15 +36,22 @@ export async function loginAction(formData: FormData) {
     return { error: error.message };
   }
 
-  if (data.user && !data.user.email_confirmed_at) {
+  const userIsVerified =
+    Boolean(data.user?.email_confirmed_at) ||
+    Boolean(data.user?.confirmed_at);
+
+  if (data.user && !userIsVerified) {
     await supabase.auth.signOut();
+    await clearSessionExpiryCookie();
 
     return {
-      error: 'Your email isn’t verified yet. Check your inbox for the verification link.',
+      error: 'Your email isnt verified yet. Check your inbox for the verification link.',
       code: 'email_not_confirmed' as const,
       email: parsed.data.email,
     };
   }
+
+  await setSessionExpiryCookie();
 
   revalidatePath('/', 'layout');
   redirect('/dashboard');
@@ -65,19 +73,21 @@ export async function signupAction(formData: FormData) {
   }
 
   const { name, email, password } = parsed.data;
-  const supabase = await createClient();
 
-  const { error } = await supabase.auth.signUp({
+  const supabaseAdmin = await createAdminClient();
+
+  const { error } = await supabaseAdmin.auth.admin.createUser({
     email,
     password,
-    options: { data: { full_name: name } },
+    email_confirm: false,
+    user_metadata: { full_name: name },
   });
 
   if (error) {
     return { error: error.message };
   }
 
-  const emailResult = await sendVerificationEmail(email);
+  const emailResult = await sendVerificationEmail(email, password);
   if (emailResult.error) {
     return { error: emailResult.error };
   }
@@ -88,12 +98,13 @@ export async function signupAction(formData: FormData) {
 export async function signOutAction() {
   const supabase = await createClient();
   await supabase.auth.signOut();
+  await clearSessionExpiryCookie();
   revalidatePath('/', 'layout');
-  redirect('/auth');
+  return { success: true };
 }
 
-export async function resendVerificationAction(email: string) {
-  return sendVerificationEmail(email);
+export async function resendVerificationAction(email: string, password: string) {
+  return sendVerificationEmail(email, password);
 }
 
 export async function requestPasswordResetAction(formData: FormData) {
@@ -136,17 +147,25 @@ export async function updatePasswordAction(formData: FormData) {
     return { error: error.message };
   }
 
+  await supabase.auth.signOut();
+  await clearSessionExpiryCookie();
+
   revalidatePath('/', 'layout');
-  redirect('/auth');
+  redirect('/auth?password_updated=true');
 }
 
-async function sendVerificationEmail(email: string) {
+async function sendVerificationEmail(email: string, password: string) {
   try {
     const supabaseAdmin = await createAdminClient();
+    const siteUrl = process.env.NEXT_SITE_URL;
 
     const { data, error } = await supabaseAdmin.auth.admin.generateLink({
-      type: 'magiclink',
+      type: 'signup',
       email,
+      password,
+      options: {
+        redirectTo: `${siteUrl}/auth?verified=true`,
+      },
     });
 
     if (error || !data.properties?.action_link) {
@@ -171,7 +190,7 @@ async function sendVerificationEmail(email: string) {
     return { success: true };
   } catch (err) {
     console.error('Email verification error:', err);
-    return { error: 'Failed to send verification email. Please check server configuration.' };
+    return { error: 'Failed to send verification email.' };
   }
 }
 

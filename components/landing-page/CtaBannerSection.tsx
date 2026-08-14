@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FiSmile as Smile, FiCheck as Check } from 'react-icons/fi';
 import { FaGoogle, FaAmazon, FaAirbnb } from 'react-icons/fa6';
+import CtaImg from '@/assets/ctaImg.jpg';
 
 export default function CtaBannerSection() {
   return (
@@ -37,10 +38,11 @@ export default function CtaBannerSection() {
         <div className="relative flex items-center justify-center z-10 w-full max-w-md lg:max-w-lg">
           <div className="relative w-64 sm:w-72 h-80 rounded-3xl overflow-hidden shadow-sm bg-gradient-to-b from-sky-200 to-sky-300 shrink-0">
             <Image
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"
+              src={CtaImg}
               alt="Happy job seeker using JobSprint AI"
               fill
               sizes="(max-width: 640px) 256px, 288px"
+              quality={80}
               className="object-cover object-center"
               priority
             />
