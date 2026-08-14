@@ -32,7 +32,7 @@ export default function HeroSection() {
               src={HeroImg}
               alt="Resume Builder Preview"
               priority
-              className="w-full h-auto max-w-lg lg:max-w-none object-contain drop-shadow-xl"
+              className="w-full h-auto max-w-2xl object-contain drop-shadow-xl"
             />
           </div>
         </div>
