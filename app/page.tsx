@@ -1,16 +1,16 @@
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import HeroSection from '@/components/HeroSection';
-import StatsSection from '@/components/StatsSection';
-import ToolsSection from '@/components/ToolsSection';
-import TemplatesSection from '@/components/TemplatesSection';
-import BeyondSection from '@/components/BeyondSection';
-import ExamplesSection from '@/components/ExamplesSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import AdviceSection from '@/components/AdviceSection';
-import FaqSection from '@/components/FaqSection';
-import CtaBannerSection from '@/components/CtaBannerSection';
-import Footer from '@/components/Footer';
+import Navbar from '@/components/landing-page/Navbar';
+import HeroSection from '@/components/landing-page/HeroSection';
+import StatsSection from '@/components/landing-page/StatsSection';
+import ToolsSection from '@/components/landing-page/ToolsSection';
+import TemplatesSection from '@/components/landing-page/TemplatesSection';
+import BeyondSection from '@/components/landing-page/BeyondSection';
+import ExamplesSection from '@/components/landing-page/ExamplesSection';
+import TestimonialsSection from '@/components/landing-page/TestimonialsSection';
+import AdviceSection from '@/components/landing-page/AdviceSection';
+import FaqSection from '@/components/landing-page/FaqSection';
+import CtaBannerSection from '@/components/landing-page/CtaBannerSection';
+import Footer from '@/components/landing-page/Footer';
 
 export default function Home() {
   return (
