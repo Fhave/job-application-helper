@@ -15,7 +15,10 @@ export async function GET(request: NextRequest) {
 
     const { error } = code
       ? await supabase.auth.exchangeCodeForSession(code)
-      : await supabase.auth.setSession({ access_token: accessToken!, refresh_token: refreshToken! });
+      : await supabase.auth.setSession({
+          access_token: accessToken!,
+          refresh_token: refreshToken!,
+        });
 
     if (!error) {
       return NextResponse.redirect(`${origin}${next}`);

@@ -9,9 +9,7 @@ export default function Loader({ label = 'Loading JobSprint AI...' }: { label?: 
         <div className="absolute w-10 h-10 rounded-full border-2 border-sky-500 border-t-transparent animate-spin" />
       </div>
 
-      <p className="text-xs font-medium text-slate-500 tracking-wide animate-pulse">
-        {label}
-      </p>
+      <p className="text-xs font-medium text-slate-500 tracking-wide animate-pulse">{label}</p>
     </div>
   );
 }

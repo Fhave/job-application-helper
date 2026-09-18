@@ -80,7 +80,9 @@ export default function Footer() {
           {/* Column 2 */}
           <div className="space-y-6">
             <div className="space-y-3">
-              <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">Resume</h4>
+              <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">
+                Resume
+              </h4>
               <ul className="space-y-2.5 text-lg font-regular text-slate-200">
                 {RESUME_LINKS.map((link) => (
                   <li key={link.title}>
@@ -159,7 +161,9 @@ export default function Footer() {
 
           {/* Column 5 */}
           <div className="space-y-3">
-            <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">Support</h4>
+            <h4 className="text-xs font-regular text-slate-500 uppercase tracking-wider">
+              Support
+            </h4>
             <ul className="space-y-2.5 text-lg font-regular text-slate-200">
               {SUPPORT_LINKS.map((link) => (
                 <li key={link.title}>
