@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import Navbar from '@/components/landing-page/Navbar';
 import HeroSection from '@/components/landing-page/HeroSection';

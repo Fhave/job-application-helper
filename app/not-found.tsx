@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FiHome, FiArrowLeft, FiSearch } from 'react-icons/fi';
+import { FiHome, FiSearch } from 'react-icons/fi';
 import Logo from '@/components/Logo';
 
 export default function NotFound() {
@@ -28,7 +28,7 @@ export default function NotFound() {
           Looks like this route sprinted away
         </h1>
         <p className="text-xs sm:text-lg text-slate-500 max-w-sm mx-auto mb-8">
-          The page you are looking for doesn't exist, was moved, or is temporarily unavailable.
+          The page you are looking for doesn&apos;t exist, was moved, or is temporarily unavailable.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

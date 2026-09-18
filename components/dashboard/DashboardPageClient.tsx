@@ -20,7 +20,6 @@ export default function DashboardPageClient() {
   const [currentStep, setCurrentStep] = useState<PipelineStep>('input');
   const [activeTab, setActiveTab] = useState<DashboardTab>('resume');
   const [file, setFile] = useState<File | null>(null);
-  const [resumeText, setResumeText] = useState<string>('');
   const [jobDescription, setJobDescription] = useState('');
   const [isExporting, setIsExporting] = useState(false);
   const [isPending, startTransition] = useTransition();
@@ -134,7 +133,6 @@ export default function DashboardPageClient() {
     setCurrentStep('input');
     setFile(null);
     setJobDescription('');
-    setResumeText('');
     setActiveTab('resume');
 
     auditAndCV.stop();
@@ -199,6 +197,7 @@ export default function DashboardPageClient() {
               onFileChange={setFile}
               onJobDescriptionChange={setJobDescription}
               onStartSprint={handleStartSprint}
+              isPending={isPending}
             />
           ) : auditAndCV.object?.audit ? (
             <AuditSidebar

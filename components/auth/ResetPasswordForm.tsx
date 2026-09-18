@@ -66,7 +66,7 @@ export default function ResetPasswordForm() {
           authListener.subscription.unsubscribe();
           clearTimeout(timeout);
         };
-      } catch (err) {
+      } catch {
         setError('Failed to establish recovery session. Please request a new link.');
         setIsVerifyingSession(false);
       }

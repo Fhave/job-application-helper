@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { FiTarget as Target, FiFileText as FileText } from 'react-icons/fi';
-import { FaApple } from 'react-icons/fa';
 
 export default function ToolsSection() {
   return (
@@ -59,7 +58,7 @@ export default function ToolsSection() {
             </h3>
             <p className="text-slate-600 text-lg leading-relaxed">
               Instantly generate targeted cover letters that connect your background directly to the
-              company's mission and job requirements.
+              company&apos;s mission and job requirements.
             </p>
           </div>
           <div className="bg-white p-5 rounded-2xl shadow-md border border-indigo-100/80 space-y-3">
@@ -68,8 +67,8 @@ export default function ToolsSection() {
                 AI
               </div>
               <div className="text-xs font-medium text-slate-600 italic">
-                "Dear Hiring Team, my experience with React and Node aligns directly with your
-                senior developer opening..."
+                &quot;Dear Hiring Team, my experience with React and Node aligns directly with your
+                senior developer opening...&quot;
               </div>
             </div>
           </div>

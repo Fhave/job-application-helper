@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useTransition } from 'react';
+import React, { useState, useTransition } from 'react';
 import { FiMail, FiUser, FiArrowRight, FiCheckCircle } from 'react-icons/fi';
 import { useSearchParams } from 'next/navigation';
 import AuthBody from './AuthBody';
@@ -16,7 +16,6 @@ export default function AuthForm() {
   const searchParams = useSearchParams();
   const [mode, setMode] = useState<ViewMode>('signin');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [unverifiedEmail, setUnverifiedEmail] = useState<string | null>(null);
   const [resendStatus, setResendStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
   const [checkEmailAddress, setCheckEmailAddress] = useState('');
@@ -25,13 +24,14 @@ export default function AuthForm() {
 
   const [isPending, startTransition] = useTransition();
 
-  useEffect(() => {
-    if (searchParams.get('verified') === 'true') {
-      setSuccessMessage('Email verified successfully. You can now sign in.');
-    } else if (searchParams.get('password_updated') === 'true') {
-      setSuccessMessage('Password reset successful. Please sign in with your new password.');
-    }
-  }, [searchParams]);
+  const isVerified = searchParams.get('verified') === 'true';
+  const isPasswordUpdated = searchParams.get('password_updated') === 'true';
+
+  const successMessage = isVerified
+    ? 'Email verified successfully. You can now sign in.'
+    : isPasswordUpdated
+      ? 'Password reset successful. Please sign in with your new password.'
+      : null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,7 +40,6 @@ export default function AuthForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
-    setSuccessMessage(null);
     setUnverifiedEmail(null);
     setFieldErrors({});
 
@@ -83,7 +82,12 @@ export default function AuthForm() {
           setMode('check-email');
         }
       } catch (err) {
-        if (err && typeof err === 'object' && 'digest' in err && String(err.digest).startsWith('NEXT_REDIRECT')) {
+        if (
+          err &&
+          typeof err === 'object' &&
+          'digest' in err &&
+          String(err.digest).startsWith('NEXT_REDIRECT')
+        ) {
           throw err;
         }
         setErrorMessage('An unexpected server error occurred. Please try again.');
@@ -108,7 +112,6 @@ export default function AuthForm() {
   const handleToggleMode = (nextMode: ViewMode) => {
     setMode(nextMode);
     setErrorMessage(null);
-    setSuccessMessage(null);
     setUnverifiedEmail(null);
     setFieldErrors({});
     setFormData({ name: '', email: '', password: '' });

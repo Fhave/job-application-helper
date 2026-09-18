@@ -7,9 +7,6 @@ type PipelineStepperProps = {
   currentStep: PipelineStep;
 };
 
-const stepClasses = (active: boolean) =>
-  active ? 'bg-sky-500 text-white' : 'bg-emerald-500 text-white';
-
 export default function PipelineStepper({ currentStep }: PipelineStepperProps) {
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
