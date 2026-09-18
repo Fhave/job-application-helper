@@ -1,10 +1,9 @@
 import React from 'react';
 import {
-  FiActivity as Gauge,
-  FiTarget as Target,
-  FiFileText as FileText,
-  FiCpu as Cpu,
   FiCheckCircle as CheckCircle,
+  FiCpu as Cpu,
+  FiFileText as FileText,
+  FiTarget as Target,
 } from 'react-icons/fi';
 import AnimatedCounter from './AnimatedCounter';
 
@@ -42,28 +41,32 @@ const features: Feature[] = [
 
 export default function StatsSection() {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-8 space-y-12">
-      <div className="flex flex-row md:flex-col items-center justify-center gap-3">
-        <div className="flex items-center gap-1  font-bold text-3xl sm:text-4xl text-sky-500">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8 sm:space-y-12">
+      <div className="flex flex-col items-center justify-center gap-1 sm:gap-3 text-center">
+        <div className="flex items-center gap-1 font-bold text-3xl sm:text-4xl text-sky-500">
           <AnimatedCounter />
         </div>
 
-        <span className="text-6xl sm:text-2xl font-regular text-slate-800 ml-1">
+        <span className="text-xl sm:text-2xl font-regular text-slate-800">
           resumes created today
         </span>
       </div>
 
       {/* Feature Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {features.map((feature, idx) => (
           <div
             key={idx}
-            className="bg-slate-50/70 border border-slate-100/80 rounded-2xl p-6 flex flex-col justify-between hover:shadow-sm transition"
+            className="bg-slate-50/70 border border-slate-100/80 rounded-2xl p-5 sm:p-6 flex flex-col justify-between hover:shadow-sm transition"
           >
             <div className="space-y-4">
               <div className="w-10 h-10 flex items-center justify-center">{feature.icon}</div>
-              <h3 className="text-2xl font-regular text-slate-900 tracking-tight">{feature.title}</h3>
-              <p className="text-slate-500 text-lg leading-relaxed">{feature.description}</p>
+              <h3 className="text-xl sm:text-2xl font-regular text-slate-900 tracking-tight">
+                {feature.title}
+              </h3>
+              <p className="text-base sm:text-lg text-slate-500 leading-relaxed">
+                {feature.description}
+              </p>
             </div>
           </div>
         ))}

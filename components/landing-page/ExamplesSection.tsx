@@ -1,19 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import {
   FiChevronLeft as ChevronLeft,
   FiChevronRight as ChevronRight,
   FiStar as Star,
 } from 'react-icons/fi';
-
-interface ResumeExample {
-  id: string;
-  name: string;
-  role: string;
-  category: string;
-  previewImage?: string;
-}
 
 export default function ExamplesSection() {
   const categories = [
@@ -32,27 +25,6 @@ export default function ExamplesSection() {
   ];
 
   const [activeCategory, setActiveCategory] = useState('All');
-
-  const resumeExamples: ResumeExample[] = [
-    {
-      id: '1',
-      name: 'Marion Diaz',
-      role: 'Legal Administrative Assistant',
-      category: 'Legal',
-    },
-    {
-      id: '2',
-      name: 'Dr. Emmit Jackson',
-      role: 'Doctor / Physician',
-      category: 'Doctor',
-    },
-    {
-      id: '3',
-      name: 'Sarah Lin',
-      role: 'Senior Architect',
-      category: 'Architect',
-    },
-  ];
 
   return (
     <section className="w-full bg-[#1e2396] text-white py-12 px-6 sm:px-12 relative overflow-hidden">
@@ -106,7 +78,7 @@ export default function ExamplesSection() {
               <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-lg px-6 py-3.5 rounded-xl transition shadow-lg">
                 See all resume examples
               </button>
-              <div className="flex gap-1 text-white/40  text-lg">&lt;&lt;</div>
+              <div className="flex gap-1 text-white/40 text-lg">&lt;&lt;</div>
             </div>
 
             {/* Trustpilot Rating Widget */}
@@ -137,11 +109,13 @@ export default function ExamplesSection() {
             <div className="min-w-[280px] sm:min-w-[320px] bg-white text-slate-900 rounded-lg p-6 shadow-2xl border border-slate-100 flex flex-col justify-between aspect-[1/1.4] text-[10px] leading-snug select-none">
               <div className="space-y-3">
                 <div className="flex items-center gap-3 border-b pb-3">
-                  <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden shrink-0">
-                    <img
+                  <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden shrink-0 relative">
+                    <Image
                       src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120"
                       alt="Marion Diaz"
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="40px"
+                      className="object-cover"
                     />
                   </div>
                   <div>
@@ -186,11 +160,13 @@ export default function ExamplesSection() {
             <div className="min-w-[280px] sm:min-w-[320px] bg-white text-slate-900 rounded-lg p-6 shadow-2xl border border-slate-100 flex flex-col justify-between aspect-[1/1.4] text-[10px] leading-snug select-none">
               <div className="space-y-3">
                 <div className="flex items-center gap-3 border-b pb-3">
-                  <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden shrink-0">
-                    <img
+                  <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden shrink-0 relative">
+                    <Image
                       src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120"
                       alt="Dr. Emmit Jackson"
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="40px"
+                      className="object-cover"
                     />
                   </div>
                   <div>

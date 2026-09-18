@@ -38,7 +38,7 @@ export default function AnimatedCounter({
   const formattedString = currentValue.toLocaleString('en-US');
 
   return (
-    <div className="inline-flex items-center gap-1 text-6xl font-regular text-sky-600">
+    <div className="inline-flex items-center gap-1 text-5xl md:text-6xl font-regular text-sky-600">
       {formattedString.split('').map((char, index) => {
         if (char === ',') {
           return (

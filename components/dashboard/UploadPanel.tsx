@@ -1,6 +1,6 @@
 'use client';
 
-import { FiUploadCloud, FiFileText, FiArrowRight } from 'react-icons/fi';
+import { FiUploadCloud, FiFileText, FiArrowRight, FiLoader } from 'react-icons/fi';
 
 type UploadPanelProps = {
   file: File | null;
@@ -8,6 +8,7 @@ type UploadPanelProps = {
   onFileChange: (file: File | null) => void;
   onJobDescriptionChange: (value: string) => void;
   onStartSprint: () => void;
+  isPending?: boolean;
 };
 
 export default function UploadPanel({
@@ -16,17 +17,23 @@ export default function UploadPanel({
   onFileChange,
   onJobDescriptionChange,
   onStartSprint,
+  isPending = false,
 }: UploadPanelProps) {
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-5 flex-1">
       <h2 className="text-lg font-bold text-slate-900">1. Upload Resume</h2>
 
-      <div className="border-2 border-dashed border-slate-200 hover:border-sky-400 rounded-xl p-6 text-center transition-colors cursor-pointer bg-slate-50 relative">
+      <div
+        className={`border-2 border-dashed border-slate-200 hover:border-sky-400 rounded-xl p-6 text-center transition-colors relative ${
+          isPending ? 'opacity-50 pointer-events-none bg-slate-100' : 'cursor-pointer bg-slate-50'
+        }`}
+      >
         <input
           type="file"
           accept=".pdf"
+          disabled={isPending}
           onChange={(event) => onFileChange(event.target.files?.[0] || null)}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
         />
         <FiUploadCloud className="w-8 h-8 text-sky-500 mx-auto mb-2" />
         {file ? (
@@ -50,20 +57,30 @@ export default function UploadPanel({
         <textarea
           value={jobDescription}
           onChange={(event) => onJobDescriptionChange(event.target.value)}
+          disabled={isPending}
           rows={6}
           placeholder="Paste the full job posting, key qualifications, and requirements here..."
-          className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 transition-colors resize-none font-sans"
+          className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 transition-colors resize-none font-sans disabled:opacity-50 disabled:cursor-not-allowed"
         />
       </div>
 
       <button
         type="button"
         onClick={onStartSprint}
-        disabled={!file || !jobDescription}
+        disabled={!file || !jobDescription || isPending}
         className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs"
       >
-        <span>Start AI Sprint</span>
-        <FiArrowRight className="w-4 h-4" />
+        {isPending ? (
+          <>
+            <FiLoader className="w-4 h-4 animate-spin" />
+            <span>Processing...</span>
+          </>
+        ) : (
+          <>
+            <span>Start AI Sprint</span>
+            <FiArrowRight className="w-4 h-4" />
+          </>
+        )}
       </button>
     </div>
   );

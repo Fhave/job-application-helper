@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { FiChevronDown as ChevronDown, FiMenu as Menu, FiX as X } from 'react-icons/fi';
 import Logo from '@/components/Logo';
+import Link from 'next/link';
+import { useState } from 'react';
+import { FiChevronDown as ChevronDown, FiMenu as Menu, FiX as X } from 'react-icons/fi';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -34,15 +34,15 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="max-w-8xl mx-auto px-6 h-20 flex items-center justify-between relative">
+    <nav className="max-w-8xl mx-auto pt-3 px-4 sm:px-6 h-20 flex items-center justify-between relative">
       <Link href="/#" className="flex items-center gap-2 group">
         <Logo className="w-8 h-8 group-hover:scale-105 transition-transform" />
-        <span className="text-2xl font-black tracking-tight text-slate-900">
+        <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900">
           Job <span className="text-sky-500">Sprint AI</span>
         </span>
       </Link>
 
-      <div className="hidden md:flex items-center gap-7">
+      <div className="hidden lg:flex items-center gap-7">
         {/* Nav Links */}
         <div className="flex items-center gap-7 text-lg font-regular text-black">
           {navItems.map((item) => (
@@ -84,7 +84,7 @@ export default function Navbar() {
         </div>
 
         {/* Vertical Separator Line */}
-        <div className="h-5 w-[1px] bg-slate-200 shrink-0" aria-hidden="true" />
+        <div className="h-5 w-px bg-slate-200 shrink-0" aria-hidden="true" />
 
         {/* Auth Buttons */}
         <div className="flex items-center gap-5">
@@ -103,7 +103,7 @@ export default function Navbar() {
       {/* Mobile Hamburger Button */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="md:hidden p-2 text-sky-600 hover:text-sky-600 focus:outline-none"
+        className="lg:hidden p-2 text-sky-600 hover:text-sky-600 focus:outline-none"
         aria-label="Toggle Navigation Menu"
       >
         {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -111,7 +111,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="absolute top-20 left-0 w-full bg-white border-b border-slate-200 shadow-xl py-6 px-6 flex flex-col gap-4 md:hidden z-50">
+        <div className="absolute top-20 left-0 w-full bg-white border-b border-slate-200 shadow-xl py-6 px-4 sm:px-6 flex flex-col gap-4 lg:hidden z-50">
           {navItems.map((item) => (
             <div key={item.label} className="border-b border-slate-100 pb-3">
               {item.dropdown ? (
