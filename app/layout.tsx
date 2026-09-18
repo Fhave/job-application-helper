@@ -107,7 +107,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={ttCommons.variable}>
-      <body className="font-sans bg-slate-50 text-slate-900 antialiased min-h-screen">{children}</body>
+      <body className="font-sans bg-slate-50 text-slate-900 antialiased min-h-screen">
+        {children}
+      </body>
     </html>
   );
 }

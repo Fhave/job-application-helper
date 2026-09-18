@@ -18,9 +18,7 @@ interface VerificationEmailProps {
   actionUrl: string;
 }
 
-export const VerificationEmailTemplate: React.FC<VerificationEmailProps> = ({
-  actionUrl,
-}) => {
+export const VerificationEmailTemplate: React.FC<VerificationEmailProps> = ({ actionUrl }) => {
   return (
     <Html>
       <Preview>Verify your JobSprint AI account</Preview>
@@ -28,10 +26,10 @@ export const VerificationEmailTemplate: React.FC<VerificationEmailProps> = ({
         <Head />
         <Body className="bg-slate-50 font-sans my-auto mx-auto font-normal">
           <Container className="bg-white border border-solid border-slate-200 rounded-xl mx-auto my-10 max-w-125 p-8">
-
             <Section className="mt-2">
               <Text className="text-[22px] font-extrabold text-slate-900 m-0 p-0">
-                Job<span className="text-sky-500">Sprint</span> <span className="text-slate-400 font-medium text-base">AI</span>
+                Job<span className="text-sky-500">Sprint</span>{' '}
+                <span className="text-slate-400 font-medium text-base">AI</span>
               </Text>
             </Section>
 
@@ -40,7 +38,8 @@ export const VerificationEmailTemplate: React.FC<VerificationEmailProps> = ({
             </Heading>
 
             <Text className="text-slate-700 text-[15px] leading-6">
-              Thanks for signing up for JobSprint AI. Click the button below to verify your email address and get started with tailoring your resumes.
+              Thanks for signing up for JobSprint AI. Click the button below to verify your email
+              address and get started with tailoring your resumes.
             </Text>
 
             <Section className="text-center my-8">

@@ -1,6 +1,10 @@
 import { cookies } from 'next/headers';
 import { createClient } from '@/lib/supabase/server';
-import { clearSessionExpiryCookie, isSessionExpired, SESSION_TIMEOUT_COOKIE } from '@/lib/auth/session';
+import {
+  clearSessionExpiryCookie,
+  isSessionExpired,
+  SESSION_TIMEOUT_COOKIE,
+} from '@/lib/auth/session';
 
 function isVerifiedUser(user: {
   email_confirmed_at?: string | null;

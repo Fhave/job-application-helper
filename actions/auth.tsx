@@ -38,9 +38,7 @@ export async function loginAction(formData: FormData) {
     return { error: error.message };
   }
 
-  const userIsVerified =
-    Boolean(data.user?.email_confirmed_at) ||
-    Boolean(data.user?.confirmed_at);
+  const userIsVerified = Boolean(data.user?.email_confirmed_at) || Boolean(data.user?.confirmed_at);
 
   if (data.user && !userIsVerified) {
     await supabase.auth.signOut();
@@ -180,7 +178,7 @@ async function sendVerificationEmail(email: string, password: string) {
       from: 'JobSprint AI <onboarding@resend.dev>',
       to: [email],
       subject: 'Verify your JobSprint AI account',
-      react: <VerificationEmailTemplate actionUrl={actionUrl}/>,
+      react: <VerificationEmailTemplate actionUrl={actionUrl} />,
     });
 
     return { success: true };
